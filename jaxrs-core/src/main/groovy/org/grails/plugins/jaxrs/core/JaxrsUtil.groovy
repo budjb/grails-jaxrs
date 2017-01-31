@@ -64,7 +64,7 @@ class JaxrsUtil {
             getResourcePaths(it).each {
                 path = buildMappingFromPath(rootPath, it)
                 if(path) {
-                    paths.add(buildMappingFromPath(rootPath, it))
+                    paths.add(path)
                 }
             }
         }
