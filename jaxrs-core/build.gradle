@@ -66,6 +66,8 @@ dependencies {
     compile('javax.ws.rs:jsr311-api:1.1.1') {
         exclude module: 'junit'
     }
+    compile group: 'commons-io', name: 'commons-io', version: '2.4'
+
 }
 
 
