@@ -8,6 +8,7 @@ import org.grails.plugins.jaxrs.core.JaxrsContext
 import org.grails.plugins.jaxrs.core.JaxrsFilter
 import org.grails.plugins.jaxrs.core.JaxrsListener
 import org.grails.plugins.jaxrs.core.JaxrsUtil
+import org.grails.plugins.jaxrs.filters.ReusableHttpRequestStreamFilter
 import org.grails.plugins.jaxrs.provider.*
 import org.springframework.boot.context.embedded.FilterRegistrationBean
 import org.springframework.boot.context.embedded.ServletListenerRegistrationBean
@@ -23,6 +24,7 @@ class JaxrsCoreGrailsPlugin extends Plugin {
     /**
      * Load order.
      */
+    def loadBefore = ['core']
     def loadAfter = ['hibernate3', 'hibernate4', 'hibernate5', 'controllers', 'services', 'spring-security-core']
 
     /**
@@ -137,6 +139,11 @@ mechanism for implementing  RESTful web services.
                     bean.scope = 'singleton'
                     bean.autowire = true
                 }
+            }
+            reusableHttpRequestStreamFilter(FilterRegistrationBean) {
+                filter = bean(ReusableHttpRequestStreamFilter)
+                urlPatterns = ['/*']
+                order = Ordered.HIGHEST_PRECEDENCE
             }
         }
     }
