@@ -58,10 +58,14 @@ class JaxrsUtil {
         candidates.addAll(jaxrsContext.applicationConfig.classes)
 
         List<String> paths = []
+        String path
         candidates.each {
             Path rootPath = getRootPath(it)
             getResourcePaths(it).each {
-                paths.add(buildMappingFromPath(rootPath, it))
+                path = buildMappingFromPath(rootPath, it)
+                if(path) {
+                    paths.add(path)
+                }
             }
         }
 
