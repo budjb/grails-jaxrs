@@ -53,6 +53,8 @@ dependencies {
     provided "org.grails:grails-plugin-domain-class"
 
     compile "org.grails:grails-plugin-testing"
+    compile "org.grails:grails-gorm-testing-support"
+    compile "org.grails:grails-web-testing-support:1.1.1"
     compile "org.grails.plugins:geb"
     compile "org.hibernate:hibernate-validator:5.2.4.Final"
 
@@ -61,6 +63,9 @@ dependencies {
 
     compile project(':jaxrs-core')
 }
+
+// enable if you wish to package this plugin as a standalone application
+bootRepackage.enabled = false
 
 grailsPublish {
     githubSlug = publishGithubSlug

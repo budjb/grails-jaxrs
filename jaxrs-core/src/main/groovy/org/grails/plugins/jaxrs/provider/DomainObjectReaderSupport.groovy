@@ -24,6 +24,7 @@ import org.springframework.validation.BindingResult
 import javax.ws.rs.WebApplicationException
 import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.MultivaluedMap
+import javax.ws.rs.core.Response
 import javax.ws.rs.ext.MessageBodyReader
 import java.lang.annotation.Annotation
 import java.lang.reflect.Type
@@ -53,6 +54,7 @@ import static ProviderUtils.isXmlType
  * </pre>
  *
  * @author Martin Krasser
+ * @author Alex Stoia
  */
 abstract class DomainObjectReaderSupport implements MessageBodyReader<Object>, GrailsApplicationAware {
 
@@ -88,7 +90,13 @@ abstract class DomainObjectReaderSupport implements MessageBodyReader<Object>, G
 
         String resolvedEncoding = ConverterUtils.getEncoding(httpHeaders, mediaType, defaultEncoding)
         BindingResult result = DataBindingUtils.bindObjectToInstance(domainInstance, new InputStreamReader(entityStream, resolvedEncoding))
-
+        if (result && result.hasErrors()) {
+            // This should only happen if the json/xml input is invalid and NOT if the domain instance has errors.
+            String errMessage = "Failed to bind input to entity to domain ${domainInstance.getClass()}. " +
+                    "Got following errors:\n ${result.getAllErrors()}".toString()
+            // Cannot use newer constructor taking the String message, due to jersey 1 depending on older jax-rs version
+            throw new WebApplicationException(Response.serverError().entity(errMessage).build())
+        }
         return domainInstance
     }
 

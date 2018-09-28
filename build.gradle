@@ -1,4 +1,4 @@
-allprojects {
+allprojects { project ->
     version = '3.0.4'
     group = 'org.grails.plugins'
 

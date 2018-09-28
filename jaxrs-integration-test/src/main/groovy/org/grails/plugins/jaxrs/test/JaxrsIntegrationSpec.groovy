@@ -86,6 +86,14 @@ abstract class JaxrsIntegrationSpec extends Specification {
         jaxrsController.jaxrsUtil = jaxrsUtil
 
         jaxrsContext.restart()
+        doExtraSetup()
+    }
+
+    /**
+     * Perform any extra setup needed.
+     */
+    void doExtraSetup() {
+        // do nothing by default.
     }
 
     /**

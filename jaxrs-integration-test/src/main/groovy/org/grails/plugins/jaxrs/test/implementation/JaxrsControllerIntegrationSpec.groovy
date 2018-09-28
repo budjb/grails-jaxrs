@@ -15,16 +15,39 @@
  */
 package org.grails.plugins.jaxrs.test.implementation
 
+import org.grails.core.artefact.DomainClassArtefactHandler
+import grails.testing.mixin.integration.Integration
 import org.grails.plugins.jaxrs.test.JaxrsIntegrationSpec
 import org.grails.plugins.jaxrs.test.JaxrsRequestProperties
 import org.grails.plugins.jaxrs.test.implementation.resources.*
+import org.grails.plugins.jaxrs.test.implementation.support.TestPerson
 import spock.lang.Unroll
 
 /**
  * @author Noam Y. Tenne
  * @author Bud Byrd
+ * @author Alex Stoia
  */
+@Integration
 abstract class JaxrsControllerIntegrationSpec extends JaxrsIntegrationSpec {
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    void doExtraSetup() {
+        super.doExtraSetup()
+        def originalMethod = DomainClassArtefactHandler.metaClass.getMetaMethod("isDomainClass", Class)
+        DomainClassArtefactHandler.metaClass.'static'.isDomainClass = { Class<?> clazz ->
+            if (clazz.isAssignableFrom(TestPerson)) {
+                return true
+            } else {
+                originalMethod.invoke(delegate, clazz)
+            }
+
+        }
+    }
+
     /**
      * Return the list of resources to build the JAX-RS servlet with.
      *
@@ -126,6 +149,25 @@ abstract class JaxrsControllerIntegrationSpec extends JaxrsIntegrationSpec {
 
         def data = response.bodyAsXml
         data['name'].text() == 'semaj'
+    }
+
+    def "Initiate a single round-trip on resource 04 for content type application/xml with invalid body"() {
+        when:
+        def response = makeRequest(new JaxrsRequestProperties(
+                uri: '/test/04/single',
+                method: 'POST',
+                contentType: 'application/xml',
+                accept: 'application/xml',
+                body: 'Invalid XML'.bytes
+        ))
+
+        then:
+        response.status == 500
+
+        def data = response.bodyAsString
+        data.contains('Failed to bind input to entity to domain class org.grails.plugins.jaxrs.test.implementation.support.TestPerson.')
+        data.contains('An error occurred parsing the body of the request')
+        data.contains('invalidRequestBody')
     }
 
     def "Initiate a single round-trip on resource 04 for content type application/json"() {

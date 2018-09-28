@@ -9,8 +9,8 @@ import org.grails.plugins.jaxrs.core.JaxrsFilter
 import org.grails.plugins.jaxrs.core.JaxrsListener
 import org.grails.plugins.jaxrs.core.JaxrsUtil
 import org.grails.plugins.jaxrs.provider.*
-import org.springframework.boot.context.embedded.FilterRegistrationBean
-import org.springframework.boot.context.embedded.ServletListenerRegistrationBean
+import org.springframework.boot.web.servlet.FilterRegistrationBean
+import org.springframework.boot.web.servlet.ServletListenerRegistrationBean
 import org.springframework.core.Ordered
 
 @Slf4j

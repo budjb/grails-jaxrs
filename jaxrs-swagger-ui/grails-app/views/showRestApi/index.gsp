@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Swagger UI</title>
-    <link rel="icon" type="image/png" href="<%= resource(dir: 'vendor/images', file: "favicon-32x32.png") %>" sizes="32x32" />
-    <link rel="icon" type="image/png" href="<%= resource(dir: 'vendor/images', file: "favicon-16x16.png") %>" sizes="16x16" />
-    <link href='<%= resource(dir: 'vendor/css', file: "typography.css") %>' media='screen' rel='stylesheet' type='text/css'/>
-    <link href='<%= resource(dir: 'vendor/css', file: "reset.css") %>' media='screen' rel='stylesheet' type='text/css'/>
-    <link href='<%= resource(dir: 'vendor/css', file: "screen.css") %>' media='screen' rel='stylesheet' type='text/css'/>
-    <link href='<%= resource(dir: 'vendor/css', file: "reset.css") %>' media='print' rel='stylesheet' type='text/css'/>
-    <link href='<%= resource(dir: 'vendor/css', file: "print.css") %>' media='print' rel='stylesheet' type='text/css'/>
+    <link rel="icon" type="image/png" href="<%= assetPath(src: 'jaxrs-swagger-ui/images/favicon-32x32.png') %>" sizes="32x32" />
+    <link rel="icon" type="image/png" href="<%= assetPath(src: 'jaxrs-swagger-ui/images/favicon-16x16.png') %>" sizes="16x16" />
+    <asset:stylesheet src="jaxrs-swagger-ui/css/typography.css" media='screen'/>
+    <asset:stylesheet src="jaxrs-swagger-ui/css/reset.css" media='screen'/>
+    <asset:stylesheet src="jaxrs-swagger-ui/css/screen.css" media='screen'/>
+    <asset:stylesheet src="jaxrs-swagger-ui/css/reset.css" media='print'/>
+    <asset:stylesheet src="jaxrs-swagger-ui/css/print.css" media='print'/>
 
-    <script src='<%= resource(dir: 'vendor/lib', file: "object-assign-pollyfill.js") %>' type='text/javascript'></script>
-    <script src='<%= resource(dir: 'vendor/lib', file: "jquery-1.8.0.min.js") %>' type='text/javascript'></script>
-    <script src='<%= resource(dir: 'vendor/lib', file: "jquery.slideto.min.js") %>' type='text/javascript'></script>
-    <script src='<%= resource(dir: 'vendor/lib', file: "jquery.wiggle.min.js") %>' type='text/javascript'></script>
-    <script src='<%= resource(dir: 'vendor/lib', file: "jquery.ba-bbq.min.js") %>' type='text/javascript'></script>
-    <script src='<%= resource(dir: 'vendor/lib', file: "handlebars-4.0.5.js") %>' type='text/javascript'></script>
-    <script src='<%= resource(dir: 'vendor/lib', file: "lodash.min.js") %>' type='text/javascript'></script>
-    <script src='<%= resource(dir: 'vendor/lib', file: "backbone-min.js") %>' type='text/javascript'></script>
-    <script src='<%= resource(dir: 'vendor', file: "swagger-ui.js") %>' type='text/javascript'></script>
-    <script src='<%= resource(dir: 'vendor/lib', file: "highlight.9.1.0.pack.js") %>' type='text/javascript'></script>
-    <script src='<%= resource(dir: 'vendor/lib', file: "highlight.9.1.0.pack_extended.js") %>' type='text/javascript'></script>
-    <script src='<%= resource(dir: 'vendor/lib', file: "jsoneditor.min.js") %>' type='text/javascript'></script>
-    <script src='<%= resource(dir: 'vendor/lib', file: "marked.js") %>' type='text/javascript'></script>
-    <script src='<%= resource(dir: 'vendor/lib', file: "swagger-oauth.js") %>' type='text/javascript'></script>
+    <asset:javascript src="jaxrs-swagger-ui/lib/object-assign-pollyfill.js"/>
+    <asset:javascript src="jaxrs-swagger-ui/lib/jquery-1.8.0.min.js"/>
+    <asset:javascript src="jaxrs-swagger-ui/lib/jquery.slideto.min.js"/>
+    <asset:javascript src="jaxrs-swagger-ui/lib/jquery.wiggle.min.js"/>
+    <asset:javascript src="jaxrs-swagger-ui/lib/jquery.ba-bbq.min.js"/>
+    <asset:javascript src="jaxrs-swagger-ui/lib/handlebars-4.0.5.js"/>
+    <asset:javascript src="jaxrs-swagger-ui/lib/lodash.min.js"/>
+    <asset:javascript src="jaxrs-swagger-ui/lib/backbone-min.js"/>
+    <asset:javascript src="jaxrs-swagger-ui/swagger-ui.js"/>
+    <asset:javascript src="jaxrs-swagger-ui/lib/highlight.9.1.0.pack.js"/>
+    <asset:javascript src="jaxrs-swagger-ui/lib/highlight.9.1.0.pack_extended.js"/>
+    <asset:javascript src="jaxrs-swagger-ui/lib/jsoneditor.min.js"/>
+    <asset:javascript src="jaxrs-swagger-ui/lib/marked.js"/>
+    <asset:javascript src="jaxrs-swagger-ui/lib/swagger-oauth.js"/>
 
     <!-- Some basic translations -->
     <!-- <script src='lang/translator.js' type='text/javascript'></script> -->
@@ -94,7 +94,7 @@
 <body class="swagger-section">
 <div id='header'>
     <div class="swagger-ui-wrap">
-        <a id="logo" href="http://swagger.io"><img class="logo__img" alt="swagger" height="30" width="30" src="<%= resource(dir: 'vendor/images', file: 'logo_small.png') %>" /><span class="logo__title">swagger</span></a>
+        <a id="logo" href="http://swagger.io"><asset:image class="logo__img" alt="swagger" height="30" width="30" src="jaxrs-swagger-ui/images/logo_small.png"/><span class="logo__title">swagger</span></a>
         <form id='api_selector'>
             <div id='auth_container'></div>
         </form>

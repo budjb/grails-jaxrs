@@ -65,6 +65,9 @@ dependencies {
     testCompile project(':jaxrs-integration-test')
 }
 
+// enable if you wish to package this plugin as a standalone application
+bootRepackage.enabled = false
+
 sourceSets {
     main {
         groovy {

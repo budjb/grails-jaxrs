@@ -1,6 +1,7 @@
 buildscript {
     ext {
         grailsVersion = project.grailsVersion
+        assetPipelineVersion = "2.14.3"
     }
     repositories {
         mavenLocal()
@@ -8,7 +9,7 @@ buildscript {
     }
     dependencies {
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
-        classpath "com.bertramlabs.plugins:asset-pipeline-gradle:2.8.2"
+        classpath "com.bertramlabs.plugins:asset-pipeline-gradle:$assetPipelineVersion"
     }
 }
 
@@ -51,15 +52,18 @@ dependencies {
     profile "org.grails.profiles:web-plugin"
     provided "org.grails:grails-plugin-services"
     provided "org.grails:grails-plugin-domain-class"
-    runtime "com.bertramlabs.plugins:asset-pipeline-grails:2.8.2"
+    runtime "com.bertramlabs.plugins:asset-pipeline-grails:$assetPipelineVersion"
     testCompile "org.grails:grails-plugin-testing"
     testCompile "org.grails.plugins:geb"
     testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
     testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
 
     compile project(':jaxrs-core')
-    compile "io.swagger:swagger-jaxrs:1.5.10"
+    compile "io.swagger:swagger-jaxrs:1.5.16"
 }
+
+// enable if you wish to package this plugin as a standalone application
+bootRepackage.enabled = false
 
 grailsPublish {
     githubSlug = publishGithubSlug

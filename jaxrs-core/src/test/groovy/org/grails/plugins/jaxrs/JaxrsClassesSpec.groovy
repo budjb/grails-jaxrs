@@ -15,8 +15,6 @@
  */
 package org.grails.plugins.jaxrs
 
-import grails.test.mixin.TestMixin
-import grails.test.mixin.support.GrailsUnitTestMixin
 import org.grails.plugins.jaxrs.artefact.JaxrsClassHelper
 import org.grails.plugins.jaxrs.test.*
 import spock.lang.Specification
@@ -25,7 +23,6 @@ import spock.lang.Specification
  * @author Martin Krasser
  * @author Bud Byrd
  */
-@TestMixin(GrailsUnitTestMixin)
 class JaxrsClassesSpec extends Specification {
     def 'Ensure resources are correctly identified as resources'() {
         expect:

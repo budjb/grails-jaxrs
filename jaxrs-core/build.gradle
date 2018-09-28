@@ -59,6 +59,8 @@ dependencies {
     provided "org.grails:grails-plugin-services"
     provided "org.grails:grails-plugin-domain-class"
     testCompile "org.grails:grails-plugin-testing"
+    testCompile "org.grails:grails-gorm-testing-support:1.1.1"
+    testCompile "org.grails:grails-web-testing-support:1.1.1"
     testCompile "org.grails.plugins:geb"
     testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
     testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
@@ -67,6 +69,8 @@ dependencies {
         exclude module: 'junit'
     }
 }
+// enable if you wish to package this plugin as a standalone application
+bootRepackage.enabled = false
 
 
 task wrapper(type: Wrapper) {

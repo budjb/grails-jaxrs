@@ -15,7 +15,7 @@
  */
 package org.grails.plugins.jaxrs
 
-import grails.test.mixin.TestFor
+import grails.testing.web.controllers.ControllerUnitTest
 import org.grails.plugins.jaxrs.core.JaxrsApplicationConfig
 import org.grails.plugins.jaxrs.core.JaxrsContext
 import org.grails.plugins.jaxrs.core.JaxrsServletConfig
@@ -35,9 +35,9 @@ import javax.servlet.http.HttpServletResponse
 /**
  * @author Martin Krasser
  * @author Bud Byrd
+ * @author Alex Stoia
  */
-@TestFor(JaxrsController)
-class JaxrsControllerSpec extends Specification {
+class JaxrsControllerSpec extends Specification implements ControllerUnitTest<JaxrsController> {
     JaxrsContext jaxrsContext
     JaxrsUtil jaxrsUtil
 
