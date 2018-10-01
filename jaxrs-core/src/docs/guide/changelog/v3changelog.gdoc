@@ -1,3 +1,6 @@
+h3. Version 3.1.0
+* Upgrade to support Grails 3.3.x (huge thanks [Alex Stoia|https://github.com/avscj]!)
+
 h3. Version 3.0.4
 * Integrate *Swagger* into the @jaxrs-jersey1@ plugin.
 * Introduce the @jaxrs-swagger-ui@ plugin.
