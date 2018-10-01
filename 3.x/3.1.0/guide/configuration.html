@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>6 Configuration 3.1.0</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
+    <script type="text/javascript">
+function addJsClass() {
+    var classes = document.body.className.split(" ");
+    classes.push("js");
+    document.body.className = classes.join(" ");
+}
+    </script>
+</head>
+
+<body class="body" onload="addJsClass();">
+<div id="navigation">
+    <div class="navTitle">
+        
+        JAX-RS Project
+    </div>
+    <div class="navLinks">
+        <ul>
+            <li>
+                <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                    <a href="../guide/index.html" class="button">Table of contents</a>
+
+                    <div id="nav-summary-childs" style="display:none;">
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/introduction.html"><strong>1</strong><span>Introduction</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/quickstart.html"><strong>2</strong><span>Quick Start</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/installing.html"><strong>3</strong><span>Installing</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/resources.html"><strong>4</strong><span>Resources</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/providers.html"><strong>5</strong><span>Entity Providers</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/configuration.html"><strong>6</strong><span>Configuration</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/swagger.html"><strong>7</strong><span>Swagger Integration</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/testing.html"><strong>8</strong><span>Integration Testing</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/advanced.html"><strong>9</strong><span>Advanced Features</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/acknowledgements.html"><strong>10</strong><span>Acknowledgements</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/changelog.html"><strong>11</strong><span>Changelog</span></a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </li>
+            <li class="separator selected">
+                <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<table id="colset" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td id="col1">
+            <div id="main" class="corner-all">
+
+                
+                    <div class="toc-item prev-left"><a href="../guide/providers.html">&lt;&lt; <strong>5</strong><span>Entity Providers</span></a></div>
+                
+
+                <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                
+                    <div class="toc-item next-right"><a href="../guide/swagger.html"><strong>7</strong><span>Swagger Integration</span> >></a></div>
+                
+
+
+                <div class="project">
+                    <h1>6 Configuration</h1>
+
+                    <p><strong>Version:</strong> 3.1.0</p>
+                </div>
+
+                
+
+                
+
+<h1 id="configuration">6 Configuration</h1>
+
+
+While the plugin works well out of the box without any configuration, there are several configuration options available
+to change certain behaviors of the plugin.<p class="paragraph"/><h3>JAX-RS resource scope</h3><p class="paragraph"/>By default, JAX-RS resource classes are instantiated with every request which corresponds to the following entry in the
+application configuration:<p class="paragraph"/><div class="code"><pre>org.grails.jaxrs.resource.scope = 'prototype'</pre></div><p class="paragraph"/>Since this is the default you can omit this entry as well. On the other hand, if you prefer that your JAX-RS resources
+are singletons, add the following configuration entry.<p class="paragraph"/><div class="code"><pre>org.grails.jaxrs.resource.scope = 'singleton'</pre></div><p class="paragraph"/><h3>Domain object providers</h3><p class="paragraph"/>From version 0.3 onwards the <strong class="bold">jaxrs</strong> plugin comes with JAX-RS providers for converting between Grails domain objects
+and XML/JSON representations. Domain object providers are explained in detail in the domain object providers section.
+Domain object readers and writers can be disabled by adding the following entries to the application configuration.<p class="paragraph"/><div class="code"><pre>org.grails.jaxrs.doreader.disable = <span class="java&#45;keyword">true</span>
+org.grails.jaxrs.dowriter.disable = <span class="java&#45;keyword">true</span></pre></div><p class="paragraph"/>This is useful in situations where applications implement custom providers. Another domain object provider configuration
+property, <code>org.grails.jaxrs.dowriter.require.generic.collections</code>, is explained in the domain object collections
+section.<p class="paragraph"/><h3>Additional Providers</h3><p class="paragraph"/><blockquote class="note">
+This feature is only available when the plugin uses the Jersey implementation.
+</blockquote><p class="paragraph"/>By default the <strong class="bold">jaxrs</strong> plugin scans the <code>grails-app/providers</code> directory for custom providers. JAX-RS provider
+implementations located elsewhere (e.g. in 3rd party libraries) are ignored. This can be changed by defining extra paths
+where the plugin should scan for additional providers. For example by adding the following to the application
+configuration the plugin additionally scans the packages <code>com.foo</code> and <code>com.bar</code> for providers.<p class="paragraph"/><div class="code"><pre>org.grails.jaxrs.provider.extra.paths = 'com.foo;com.bar'</pre></div><p class="paragraph"/>You can also define extra paths by setting the corresponding init parameter.<p class="paragraph"/><div class="code"><pre>org.grails.jaxrs.provider.init.parameters = &#91;'com.sun.jersey.config.property.packages': 'com.foo;com.bar'&#93;</pre></div><p class="paragraph"/><h3>Init Parameters</h3><p class="paragraph"/>Init parameters for the servlet of the underlying JAX-RS implementation can be set via the
+<code>org.grails.jaxrs.provider.init.parameters</code> configuration property in the application configuration, as in the following
+example.<p class="paragraph"/><div class="code"><pre>org.grails.jaxrs.provider.init.parameters = &#91;
+    'com.sun.jersey.config.property.packages': 'com.foo;com.bar',
+    'another.key': 'another.value'
+&#93;</pre></div>
+
+
+                <div style="clear:both;margin-top:15px;"></div>
+                
+                    <div class="toc-item prev-left"><a href="../guide/providers.html">&lt;&lt; <strong>5</strong><span>Entity Providers</span></a></div>
+                
+                    <div class="toc-item next-right"><a href="../guide/swagger.html"><strong>7</strong><span>Swagger Integration</span> >></a></div>
+                
+                <div style="clear:both"></div>
+            </div>
+        </td>
+        <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div id="footer">
+    
+    
+</div>
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+</body>
+</html>

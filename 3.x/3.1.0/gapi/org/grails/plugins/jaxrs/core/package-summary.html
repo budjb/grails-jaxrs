@@ -1,0 +1,229 @@
+<!--
+
+     Licensed to the Apache Software Foundation (ASF) under one
+     or more contributor license agreements.  See the NOTICE file
+     distributed with this work for additional information
+     regarding copyright ownership.  The ASF licenses this file
+     to you under the Apache License, Version 2.0 (the
+     "License"); you may not use this file except in compliance
+     with the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing,
+     software distributed under the License is distributed on an
+     "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+     specific language governing permissions and limitations
+     under the License.
+
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+<title>org.grails.plugins.jaxrs.core (jaxrs-core 3.1.0 API)</title>
+<meta name="keywords" content="org.grails.plugins.jaxrs.core package">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel ="stylesheet" TYPE="text/css" HREF="../../../../../stylesheet.css" title="Style">
+<link href="../../../../../groovy.ico" type="image/x-icon" rel="shortcut icon">
+<link href="../../../../../groovy.ico" type="image/x-icon" rel="icon">
+<script type="text/javascript">
+function windowTitle()
+{
+    parent.document.title="org.grails.plugins.jaxrs.core (jaxrs-core 3.1.0 API)";
+}
+</script>
+<noscript>
+</noscript>
+
+</head>
+
+<body class="center" onload="windowTitle();">
+
+<!-- ========= START OF TOP NAVBAR ======= -->
+<div class="topNav"><a name="navbar_top">
+    <!--   -->
+</a><a href="#skip-navbar_top" title="Skip navigation links"></a><a name="navbar_top_firstrow">
+    <!--   -->
+</a>
+<a name="navbar_top_firstrow"><!-- --></a>
+<ul class="navList" title="Navigation">
+    <li><a href="../../../../../overview-summary.html">Overview</a></li>
+    <li class="navBarCell1Rev">Package</li>
+    <li>Class</li>
+    <li><a href="../../../../../deprecated-list.html">Deprecated</a></li>
+    <li><a href="../../../../../index-all.html">Index</a></li>
+    <li><a href="../../../../../help-doc.html">Help</a></li>
+</ul>
+</div>
+
+<div class="subNav">
+    <ul class="navList">
+        <li><a href="../../../../../index.html?org/grails/plugins/jaxrs/core/package-summary.html" target="_top">Frames</a></li>
+        <li><a href="package-summary.html" target="_top">No Frames</a></li>
+    </ul>
+</div>
+
+<!-- ========= END OF TOP NAVBAR ========= -->
+
+<div class="header">
+    <h1 class="title">Package org.grails.plugins.jaxrs.core</h1>
+</div>
+
+
+
+<div class="contentContainer">
+
+
+    <div class="summary">
+        <ul class="blockList">
+            <li class="blockList">
+                <table border="0" cellpadding="3" cellspacing="0" summary="Interface Summary">
+                    <caption><span>Interface Summary</span><span class="tabEnd">&nbsp;</span></caption>
+                    <tbody>
+                    <tr>
+                        <th class="colFirst" scope="col">Interface</th>
+                        <th class="colLast" scope="col">Description</th>
+                    </tr>
+<tr class="altColor">
+                            <td class="colOne">
+                                <strong><a href="ResourceRegistrar.html" title="class in org/grails/plugins/jaxrs/core">
+                                    ResourceRegistrar
+                                </a></strong>
+                            </td>
+                            <td>An interface defining a class that is responsible for providing the plugin with a list of
+ resource classes to add the <a href='../../../../../org/grails/plugins/jaxrs/core/JaxrsContext.html' title='JaxrsContext'>JaxrsContext</a> during application initialization.</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </li>
+            </ul>
+        </div>
+    
+
+
+
+    <div class="summary">
+        <ul class="blockList">
+            <li class="blockList">
+                <table border="0" cellpadding="3" cellspacing="0" summary="Class Summary">
+                    <caption><span>Class Summary</span><span class="tabEnd">&nbsp;</span></caption>
+                    <tbody>
+                    <tr>
+                        <th class="colFirst" scope="col">Class</th>
+                        <th class="colLast" scope="col">Description</th>
+                    </tr>
+<tr class="altColor">
+                            <td class="colOne">
+                                <strong><a href="JaxrsApplicationConfig.html" title="class in org/grails/plugins/jaxrs/core">
+                                    JaxrsApplicationConfig
+                                </a></strong>
+                            </td>
+                            <td>Defines the components (resource and provider classes) of a JAX-RS
+ applications. </td>
+                        </tr>
+<tr class="altColor">
+                            <td class="colOne">
+                                <strong><a href="JaxrsContext.html" title="class in org/grails/plugins/jaxrs/core">
+                                    JaxrsContext
+                                </a></strong>
+                            </td>
+                            <td>The JAX-RS context used by applications to interact with a JAX-RS
+ implementation.</td>
+                        </tr>
+<tr class="altColor">
+                            <td class="colOne">
+                                <strong><a href="JaxrsFilter.html" title="class in org/grails/plugins/jaxrs/core">
+                                    JaxrsFilter
+                                </a></strong>
+                            </td>
+                            <td>A servlet filter that stores the request URI as request attribute.</td>
+                        </tr>
+<tr class="altColor">
+                            <td class="colOne">
+                                <strong><a href="JaxrsListener.html" title="class in org/grails/plugins/jaxrs/core">
+                                    JaxrsListener
+                                </a></strong>
+                            </td>
+                            <td>Initializes a Jersey servlet for request processing.</td>
+                        </tr>
+<tr class="altColor">
+                            <td class="colOne">
+                                <strong><a href="JaxrsRequestWrapper.html" title="class in org/grails/plugins/jaxrs/core">
+                                    JaxrsRequestWrapper
+                                </a></strong>
+                            </td>
+                            <td>A request wrapper that decorates javax.servlet.http.HttpServletRequest#getRequestURI().</td>
+                        </tr>
+<tr class="altColor">
+                            <td class="colOne">
+                                <strong><a href="JaxrsServletConfig.html" title="class in org/grails/plugins/jaxrs/core">
+                                    JaxrsServletConfig
+                                </a></strong>
+                            </td>
+                            <td>A servlet configuration that allows for modification of the class list.</td>
+                        </tr>
+<tr class="altColor">
+                            <td class="colOne">
+                                <strong><a href="JaxrsUtil.html" title="class in org/grails/plugins/jaxrs/core">
+                                    JaxrsUtil
+                                </a></strong>
+                            </td>
+                            <td>Provides utility methods to the JAX-RS plugin.</td>
+                        </tr>
+<tr class="altColor">
+                            <td class="colOne">
+                                <strong><a href="ScanningResourceRegistrar.html" title="class in org/grails/plugins/jaxrs/core">
+                                    ScanningResourceRegistrar
+                                </a></strong>
+                            </td>
+                            <td>An implementation of <a href='../../../../../org/grails/plugins/jaxrs/core/ResourceRegistrar.html' title='ResourceRegistrar'>ResourceRegistrar</a> that provides classpath scanning abilities to the registrar.</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </li>
+            </ul>
+        </div>
+    
+
+
+
+
+
+
+</div>
+
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<div class="bottomNav"><a name="navbar_bottom">
+    <!--   -->
+</a><a href="#skip-navbar_bottom" title="Skip navigation links"></a><a name="navbar_bottom_firstrow">
+    <!--   -->
+</a>
+    <ul class="navList" title="Navigation">
+        <li><a href="overview-summary.html">Overview</a></li>
+        <li class="navBarCell1Rev">Package</li>
+        <li>Class</li>
+        <li><a href="deprecated-list.html">Deprecated</a></li>
+        <li><a href="index-all.html">Index</a></li>
+        <li><a href="help-doc.html">Help</a></li>
+    </ul>
+</div>
+<div class="subNav">
+    <div>
+        <ul class="navList">
+            <li><a href="index.html?deprecated-list.html" target="_top">Frames</a></li>
+            <li><a href="deprecated-list.html" target="_top">No Frames</a></li>
+        </ul>
+    </div>
+
+    <div class="aboutLanguage"><em>Groovy Documentation</em></div>
+    <a name="skip-navbar_bottom">
+        <!--   -->
+    </a></div>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+
+</body>
+</html>

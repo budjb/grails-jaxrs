@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>8 Integration Testing 3.1.0</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
+    <script type="text/javascript">
+function addJsClass() {
+    var classes = document.body.className.split(" ");
+    classes.push("js");
+    document.body.className = classes.join(" ");
+}
+    </script>
+</head>
+
+<body class="body" onload="addJsClass();">
+<div id="navigation">
+    <div class="navTitle">
+        
+        JAX-RS Project
+    </div>
+    <div class="navLinks">
+        <ul>
+            <li>
+                <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                    <a href="../guide/index.html" class="button">Table of contents</a>
+
+                    <div id="nav-summary-childs" style="display:none;">
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/introduction.html"><strong>1</strong><span>Introduction</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/quickstart.html"><strong>2</strong><span>Quick Start</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/installing.html"><strong>3</strong><span>Installing</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/resources.html"><strong>4</strong><span>Resources</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/providers.html"><strong>5</strong><span>Entity Providers</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/configuration.html"><strong>6</strong><span>Configuration</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/swagger.html"><strong>7</strong><span>Swagger Integration</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/testing.html"><strong>8</strong><span>Integration Testing</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/advanced.html"><strong>9</strong><span>Advanced Features</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/acknowledgements.html"><strong>10</strong><span>Acknowledgements</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/changelog.html"><strong>11</strong><span>Changelog</span></a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </li>
+            <li class="separator selected">
+                <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<table id="colset" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td id="col1">
+            <div id="main" class="corner-all">
+
+                
+                    <div class="toc-item prev-left"><a href="../guide/swagger.html">&lt;&lt; <strong>7</strong><span>Swagger Integration</span></a></div>
+                
+
+                <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                
+                    <div class="toc-item next-right"><a href="../guide/advanced.html"><strong>9</strong><span>Advanced Features</span> >></a></div>
+                
+
+
+                <div class="project">
+                    <h1>8 Integration Testing</h1>
+
+                    <p><strong>Version:</strong> 3.1.0</p>
+                </div>
+
+                
+
+                
+
+<h1 id="testing">8 Integration Testing</h1>
+
+
+The <strong class="bold">jaxrs-integration-test</strong> plugin contains classes that make integration testing resources much easier.<p class="paragraph"/>Integration tests for resources are created in the same way that other integration tests are created, except
+that the test spec classes should extend <code>JaxrsIntegrationSpec</code>. This class sets up a mocked servlet context
+that tests can use to send mocked requests through the JAX-RS servlet stack, effectively emulating the path
+real requests would take.<p class="paragraph"/><blockquote class="note">Integration tests will use the JAX-RS implementation that is included in the project.</blockquote><p class="paragraph"/><h3>JaxrsIntegrationSpec</h3><p class="paragraph"/>An example of a test may look something like:<p class="paragraph"/><div class="code"><pre><span class="java&#45;keyword">package</span> com.budjb<p class="paragraph"/><span class="java&#45;keyword">import</span> grails.test.mixin.integration.Integration
+<span class="java&#45;keyword">import</span> org.grails.plugins.jaxrs.test.JaxrsIntegrationSpec
+<span class="java&#45;keyword">import</span> org.grails.plugins.jaxrs.test.JaxrsRequestProperties<p class="paragraph"/>@Integration
+class TestResourceSpec <span class="java&#45;keyword">extends</span> JaxrsIntegrationSpec &#123;
+    def 'Ensure GET /api/test returns the correct content'() &#123;
+        when:
+        def response = makeRequest(<span class="java&#45;keyword">new</span> JaxrsRequestProperties(method: 'GET', uri: '/api/test'))<p class="paragraph"/>        then:
+        response.bodyAsString == 'Test'
+        response.status == 200
+    &#125;<p class="paragraph"/>    /&#42;&#42;
+     &#42; Return the list of additional resources to build the JAX&#45;RS servlet with.
+     &#42;
+     &#42; @<span class="java&#45;keyword">return</span>
+     &#42;/
+    @Override
+    List getResources() &#123;
+        <span class="java&#45;keyword">return</span> &#91;&#93;
+    &#125;
+&#125;</pre></div><p class="paragraph"/>Classes that extend <code>JaxrsIntegrationSpec</code> are required to implements the <code>getResources</code> method. This method
+is expected to return a list of classes that represent additional resources or providers that should be loaded by the
+JAX-RS implementation. This method is useful when there are test-specific resources or providers that tests require to
+operate. The advantage is that these test-specific classes need not be present on the classpath when the application is
+deployed, and so do not need to exist in the <code>src/main</code> folder.<p class="paragraph"/><h3>Making Requests</h3><p class="paragraph"/>The <code>JaxrsIntegrationSpec</code> contains a <code>makeRequest</code> method that should be used to make requests to a resource. This
+method sets up servlet requests and response objects, and hands the request off properly. The <code>makeRequest</code> method takes
+a <code>JaxrsRequestProperties</code> object as its parameter. This object contains several properties that make up a request.<p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th>Property</th><th>Description</th></tr><tr class="table-odd"><td><code>uri</code></td><td>Path of the request. This does not need the whole hostname of running application, but only the path to the resource being tested.</td></tr><tr class="table-even"><td><code>method</code></td><td>The string HTTP method to use with the request. Common values are  <em class="italic">GET</em> ,  <em class="italic">POST</em> ,  <em class="italic">PUT</em> , and  <em class="italic">DELETE</em> .</td></tr><tr class="table-odd"><td><code>contentType</code></td><td>The content type of the body of the request.</td></tr><tr class="table-even"><td><code>accept</code></td><td>The requested content type of the body of the response.</td></tr><tr class="table-odd"><td><code>headers</code></td><td>A map of headers, where the key is the name of the header and the value is the value of the header. Supports multi-valued headers.</td></tr><tr class="table-even"><td><code>characterEncoding</code></td><td>Character encoding of the request. Defaults to  <em class="italic">UTF-8</em> .</td></tr></table><p class="paragraph"/>The <code>makeRequest</code> method returns a <code>JaxrsResponseProperties</code> object containing important properties of the response, as
+well as a couple of convenience methods for converting the response body.<p class="paragraph"/><strong class="bold">Properties</strong>
+<table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th>Property</th><th>Description</th></tr><tr class="table-odd"><td><code>status</code></td><td>The HTTP status code of the response.</td></tr><tr class="table-even"><td><code>body</code></td><td>The body of the response, if applicable. This property is a byte array.</td></tr><tr class="table-odd"><td><code>contentType</code></td><td>The content type of the response, if applicable.</td></tr><tr class="table-even"><td><code>headers</code></td><td>The headers of the response.</td></tr></table><p class="paragraph"/><strong class="bold">Methods</strong>
+<table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th>Method</th><th>Description</th></tr><tr class="table-odd"><td><code>getBodyAsString()</code></td><td>Returns the body of the response as a <code>String</code>.</td></tr><tr class="table-even"><td><code>getBodyAsJson()</code></td><td>Parses the body of the response as JSON, and returns either a <code>List</code> or a <code>Map</code>.</td></tr><tr class="table-odd"><td><code>getBodyAsXml()</code></td><td>Parses the body of the response as XML, and returns a <code>GPathResult</code>.</td></tr></table>
+
+
+                <div style="clear:both;margin-top:15px;"></div>
+                
+                    <div class="toc-item prev-left"><a href="../guide/swagger.html">&lt;&lt; <strong>7</strong><span>Swagger Integration</span></a></div>
+                
+                    <div class="toc-item next-right"><a href="../guide/advanced.html"><strong>9</strong><span>Advanced Features</span> >></a></div>
+                
+                <div style="clear:both"></div>
+            </div>
+        </td>
+        <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div id="footer">
+    
+    
+</div>
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,967 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <title>JAX-RS Project 3.1.0</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8" />
+        <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8" />
+    <script type="text/javascript">
+function addJsClass(el) {
+    var classes = document.body.className.split(" ");
+    classes.push("js");
+    document.body.className = classes.join(" ");
+}
+    </script>
+    </head>
+
+    <body class="body" onload="addJsClass();">
+        <div id="navigation">
+            <div class="navTitle">
+                
+                JAX-RS Project
+            </div>
+            <div class="navLinks">
+                <ul>
+                    <li>
+                        <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                            <a href="../guide/index.html" class="button">Table of contents</a>
+                            <div id="nav-summary-childs" style="display:none;">
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#introduction"><strong>1</strong><span>Introduction</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#quickstart"><strong>2</strong><span>Quick Start</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#installing"><strong>3</strong><span>Installing</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#resources"><strong>4</strong><span>Resources</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#providers"><strong>5</strong><span>Entity Providers</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#configuration"><strong>6</strong><span>Configuration</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#swagger"><strong>7</strong><span>Swagger Integration</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#testing"><strong>8</strong><span>Integration Testing</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#advanced"><strong>9</strong><span>Advanced Features</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#acknowledgements"><strong>10</strong><span>Acknowledgements</span></a></div>
+                                
+                                <div class="toc-item" style="margin-left:0"><a href="#changelog"><strong>11</strong><span>Changelog</span></a></div>
+                                
+                            </div>
+                        </div>
+                    </li>
+                    <li class="separator selected">
+                        <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+
+        <table id="colset" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td id="col1">
+                    <div id="main" class="corner-all">
+
+                        <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                        <div class="project">
+                            <h1>JAX-RS Project</h1>
+                            <p><strong>Authors:</strong> Bud Byrd, Donald Jackson, Martin Krasser, Davide Cavestro, Noam Y. Tenne</p>
+                            <p><strong>Version:</strong> 3.1.0</p>
+                            
+                        </div>
+
+                        
+                        <div id="table-of-content">
+                            <h2>Table of Contents</h2>
+                            
+                            <div class="toc-item" style="margin-left:0px"><a href="#introduction"><strong>1</strong><span>Introduction</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:0px"><a href="#quickstart"><strong>2</strong><span>Quick Start</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:0px"><a href="#installing"><strong>3</strong><span>Installing</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:0px"><a href="#resources"><strong>4</strong><span>Resources</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:10px"><a href="#what"><strong>4.1</strong><span>What Are Resources</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:10px"><a href="#creatingresources"><strong>4.2</strong><span>Creating Resources</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:10px"><a href="#generatingresources"><strong>4.3</strong><span>Generating Resources</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:0px"><a href="#providers"><strong>5</strong><span>Entity Providers</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:10px"><a href="#domainproviders"><strong>5.1</strong><span>Domain Object Providers</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:10px"><a href="#xmlproviders"><strong>5.2</strong><span>XML Providers</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:10px"><a href="#jsonproviders"><strong>5.3</strong><span>JSON Providers</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:10px"><a href="#customproviders"><strong>5.4</strong><span>Custom Providers</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:0px"><a href="#configuration"><strong>6</strong><span>Configuration</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:0px"><a href="#swagger"><strong>7</strong><span>Swagger Integration</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:0px"><a href="#testing"><strong>8</strong><span>Integration Testing</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:0px"><a href="#advanced"><strong>9</strong><span>Advanced Features</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:10px"><a href="#wadl"><strong>9.1</strong><span>Generate WADL</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:10px"><a href="#scaffolding"><strong>9.2</strong><span>Scaffolding Domains</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:10px"><a href="#gorm"><strong>9.3</strong><span>Using GORM</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:10px"><a href="#filters"><strong>9.4</strong><span>Applying Filters</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:10px"><a href="#injection"><strong>9.5</strong><span>Service Injection</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:10px"><a href="#google"><strong>9.6</strong><span>Google App Engine</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:0px"><a href="#acknowledgements"><strong>10</strong><span>Acknowledgements</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:0px"><a href="#changelog"><strong>11</strong><span>Changelog</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:10px"><a href="#v3changelog"><strong>11.1</strong><span>Grails 3.x</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:10px"><a href="#v2changelog"><strong>11.2</strong><span>Grails 2.x</span></a></div>
+                            
+                            <div style="clear:both" ></div>
+                        </div>
+                        
+                        
+
+<h1 id="introduction">1 Introduction</h1>
+
+
+The <strong class="bold">jaxrs</strong> project is a set of Grails plugins that supports the development of RESTful web services based on the Java
+API for RESTful Web Services (JSR 311: JAX-RS).<p class="paragraph"/>It is targeted at developers who want to structure the web service layer of an application in a JSR 311 compatible way
+but still want to continue to use Grails' powerful features such as GORM, automated XML and JSON marshalling, Grails
+services, Grails filters and so on. This plugin is an alternative to Grails' built-in mechanism for implementing RESTful
+web services.<p class="paragraph"/><h3>Features</h3>
+<ul class="star">
+<li>Makes the JSR 311 (JAX-RS) available to Grails applications for developing RESTful web services.</li>
+<li>New Grails artefact types, <a href="../guide/single.html#resources" class="guide">Resource</a> and <a href="../guide/single.html#providers" class="guide">Provider</a>, for JAX-RS classes.</li>
+<ul class="star">
+<li>JAX-RS Resource classes under <code>grails-app/resources</code> are auto-detected and can be modified at runtime.</li>
+<li>JAX-RS Provider classes under <code>grails-app/providers</code> are auto-detected and can be modified at runtime.</li>
+</ul>
+<li>Extended Grails command line interface</li>
+<ul class="star">
+<li>Create new resources and unit test templates via <code>grails create-resource &#60;resource name&#62;</code>.</li>
+<li>Generate ready-to-use resources from domain objects via <code>grails generate-resources &#60;domain class name&#62;</code>.</li>
+</ul>
+<li><a href="../guide/single.html#scaffolding" class="guide">Scaffolding</a></li>
+<ul class="star">
+<li>Generate RESTful service interfaces for Grails domain objects.</li>
+<li>Content negotiation support for XML and JSON representations.</li>
+</ul>
+<li>Ability to use any Grails feature within JAX-RS resources and providers such as:</li>
+<ul class="star">
+<li><a href="http://grails.github.io/grails-doc/latest/guide/GORM.html" target="blank">GORM</a> can be used&#10;     <a href="../guide/single.html#gorm" class="guide">for interacting with persistent domain objects</a>.</li>
+<li>Grails filters for intercepting requests to JAX-RS resources. ( <em class="italic">Deprecated</em> )</li>
+<li>Grails <a href="http://grails.github.io/grails-doc/latest/guide/services.html" target="blank">services</a> which can be&#10;     <a href="../guide/single.html#injection" class="guide">auto-injected by name</a>.</li>
+</ul>
+<li>Entity providers</li>
+<ul class="star">
+<li>Domain object providers that convert between Grails domain objects and XML or JSON representations.</li>
+<li>Support classes for developing custom entity providers.</li>
+<li>Support for content negotiation based on the <code>Accept</code> request header.</li>
+</ul>
+<li>Easy <a href="../guide/single.html#testing" class="guide">integration testing</a> of JAX-RS resources and providers.</li>
+<li>Plugin users may choose between Jersey and Restlet as JAX-RS implementations by means of configuration.</li>
+<li><strong class="bold">jaxrs</strong> applications can be <a href="../guide/single.html#google" class="guide">deployed to Google App Engine</a> (GAE).</li>
+</ul><p class="paragraph"/>
+
+
+<h1 id="quickstart">2 Quick Start</h1>
+
+
+<h3>Create The Application</h3>
+Use Grails 3.x to create a new application. As an example, let's create an application called
+<strong class="bold">jaxrs-example</strong>:
+<div class="code"><pre>&#91;budjb@laptop Projects&#93;$ grails create&#45;app jaxrs&#45;example
+| Application created at /Users/budjb/Projects/jaxrs&#45;example</pre></div><p class="paragraph"/><h3>Add JAX-RS Plugin to Dependencies</h3>
+In the <code>build.gradle</code> file, add the plugin to the project's dependencies. For the example,
+we'll use the Jersey 1.x implementation.<p class="paragraph"/><div class="code"><pre>dependencies &#123;
+    compile <span class="java&#45;quote">"org.grails.plugins:jaxrs&#45;jersey1:1.0.0"</span><p class="paragraph"/>    // other dependencies below&#8230;
+&#125;</pre></div><p class="paragraph"/><blockquote class="note">
+Be sure to use the updated version number of the plugin you are using. The version number
+above is likely out of date.
+</blockquote><p class="paragraph"/><h3>Create a Resource</h3>
+The plugin comes bundled with a helper script to generate a basic resource, which we'll use here.<p class="paragraph"/><div class="code"><pre>&#91;budjb@laptop jaxrs&#45;example&#93;$ grails create&#45;resource com.budjb.Test<p class="paragraph"/>BUILD SUCCESSFUL<p class="paragraph"/>| Rendered template Resource.groovy to destination grails&#45;app/resources/com/budjb/TestResource.groovy</pre></div><p class="paragraph"/>The resulting file should look like the class below. Notice the path information in the generated Resource.<p class="paragraph"/><div class="code"><pre><span class="java&#45;keyword">package</span> com.budjb<p class="paragraph"/><span class="java&#45;keyword">import</span> javax.ws.rs.GET
+<span class="java&#45;keyword">import</span> javax.ws.rs.Path
+<span class="java&#45;keyword">import</span> javax.ws.rs.Produces<p class="paragraph"/>@Path('/api/test')
+class TestResource &#123;
+    @GET
+    @Produces('text/plain')
+    <span class="java&#45;object">String</span> getTestRepresentation() &#123;
+        'Test'
+    &#125;
+&#125;</pre></div><p class="paragraph"/><h3>Start the Application</h3>
+Everything we need is in place, so now we can start the application.
+<div class="code"><pre>&#91;budjb@laptop jaxrs&#45;example&#93;$ ./gradlew bootRun
+Grails application running at http://localhost:8080 in environment: development
+&#62; Building 97% &#62; :jaxrs&#45;example:bootRun</pre></div><p class="paragraph"/><h3>Try It Out!</h3>
+Point your web browser to <code>http://localhost:8080/api/test</code>, and you should be greeted with
+the word <code>Test</code>.
+
+
+<h1 id="installing">3 Installing</h1>
+
+
+The plugin itself is split into several smaller plugins. The <strong class="bold">jaxrs-core</strong> plugin contains the bulk
+of the classes necessary for the plugin to work, but there are many different implementations of
+JSR-311 that exist. The plugin was broken up to better manage the library dependencies that come
+with adding many different implementations.<p class="paragraph"/>When adding the <strong class="bold">jaxrs</strong> plugin to an application, one of the implementation-specific plugins should
+be used.<p class="paragraph"/><blockquote class="warning">
+The <strong class="bold">jaxrs-core</strong> plugin should not be included as a dependency of an application directly. It will
+automatically be included as part of the dependencies of the implementation that is chosen.
+</blockquote><p class="paragraph"/>The table below details the various plugins that are available and what they do.
+<table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th>Name</th><th>Description</th></tr><tr class="table-odd"><td>jaxrs-core</td><td>Contains the core classes necessary to run the <strong class="bold">jaxrs</strong> plugin. This plugin should <strong class="bold">not</strong> be included directly in applications.</td></tr><tr class="table-even"><td>jaxrs-jersey1</td><td>Implements the <strong class="bold">jersey server 1.x</strong> JAX-RS library.</td></tr><tr class="table-odd"><td>jaxrs-restlet</td><td>Implements the <strong class="bold">restlet</strong> JAX-RS library.</td></tr><tr class="table-even"><td>jaxrs-integration-test</td><td>Provides a mocked environment superclass useful for integration tests that target resources.</td></tr></table>
+
+
+
+<h1 id="resources">4 Resources</h1>
+
+
+
+
+
+<h2 id="what">4.1 What Are Resources</h2>
+
+
+<strong class="bold">Root resources</strong> are classes that contain RESTful API services as defined by the JSR-311 JAX-RS standard. Such classes
+contain methods that service an API endpoint. These classes and methods make extensive use of annotations to define
+their properties and behavior, such as the path in a URL, what content types endpoints consume and produce, and what
+HTTP methods each endpoint supports.<p class="paragraph"/><blockquote class="note">
+Oracle has an excellent <a href="http://docs.oracle.com/javaee/6/tutorial/doc/giepu.html" target="blank">article</a> explaining how to create root
+resource classes and detail the annotations provided byJAX-RS.
+</blockquote>
+
+
+
+<h2 id="creatingresources">4.2 Creating Resources</h2>
+
+
+Any <code>*Resource.groovy</code> file created under grails-app/resources is assumed to be a JAX-RS resource and auto-detected by the
+<strong class="bold">jaxrs</strong> plugin. These resources are checked for the presence of JAX-RS annotations as defined by JAX-RS 1.1
+specification, section 3.1. Resources that aren't properly annotated are ignored by the plugin.<p class="paragraph"/><blockquote class="note">When running applications locally, resource classes are watched and reloaded when any change to them occurs.</blockquote>
+
+
+
+<h2 id="generatingresources">4.3 Generating Resources</h2>
+
+
+As a convenience, the <strong class="bold">jaxrs</strong> plugin provides a script that will create a simple resource skeleton that can be built
+upon. The default template generates a simple root resource class with a single method implementing a <code>GET</code> API. The
+script can be called as follows:<p class="paragraph"/><div class="code"><pre>grails create&#45;resource class.path.Name</pre></div><p class="paragraph"/>In the above example, a new resource class will be generated at the path
+<code>grails-app/resources/class/path/NameResource.groovy</code> with an API root path of <code>/api/name</code>.<p class="paragraph"/><blockquote class="note">
+The default template can be overridden by applications by placing a new template in
+<code>src/main/templates/artifacts/Resource.groovy</code>. Use the
+<a href="https://raw.githubusercontent.com/budjb/grails-jaxrs/grails-3.1/jaxrs-core/src/main/templates/artifacts/Resource.groovy" target="blank">default template</a>
+as a reference on the variables used to build the resource class.
+</blockquote><p class="paragraph"/>A more powerful script that will generate root resources for a domain class is documented in the
+<a href="../guide/single.html#scaffolding" class="guide">Scaffolding Domains</a> section.
+
+
+<h1 id="providers">5 Entity Providers</h1>
+
+
+Entity providers bind representation formats to Java classes. They are used to factor out marshalling and unmarshalling
+code from resource classes.<p class="paragraph"/>The <strong class="bold">jaxrs</strong> plugin provides some default entity providers that are presented in the following subsections. The
+<a href="../guide/single.html#customproviders" class="guide">custom providers</a> section explains how to implement custom entity providers.
+
+
+<h2 id="domainproviders">5.1 Domain Object Providers</h2>
+
+
+Domain object providers convert between Grails domain classes and their XML or JSON representations and support content
+negotiation.
+<ul class="star">
+<li>Converting an XML or JSON representation to a domain object is done by the <code>org.grails.jaxrs.provider.DomainObjectReader</code>. This provider is used whenever a Grails domain class is used as resource method parameter.</li>
+<li>Converting a domain object to an XML or JSON representation is done by the <code>org.grails.jaxrs.provider.DomainObjectWriter</code>. This provider is used whenever a Grails domain object (collection) is returned from a resource method.</li>
+</ul><p class="paragraph"/>The behaviour of domain object providers can be customized as described in the <a href="../guide/single.html#customproviders" class="guide">custom providers</a>
+section.
+
+
+<h2 id="xmlproviders">5.2 XML Providers</h2>
+
+
+XML providers are superseded by domain object providers since <strong class="bold">jaxrs</strong> version 0.3.
+<ul class="star">
+<li><code>org.grails.jaxrs.provider.XMLReader</code> converts an XML representation of a domain object into a <code>java.util.Map</code>. This map can be used for constructing domain objects.</li>
+<li><code>org.grails.jaxrs.provider.XMLWriter</code> converts an <code>grails.converters.XML</code> object into an XML representation.</li>
+</ul><p class="paragraph"/>Usage example:<p class="paragraph"/><div class="code"><pre><span class="java&#45;keyword">import</span> grails.converters.XML<p class="paragraph"/>class PersonResource &#123;
+    @PUT
+    @Consumes('application/xml')
+    @Produces('application/xml')
+    XML update(Map dto) &#123;
+        Person person = <span class="java&#45;keyword">new</span> Person(map)
+        // &#8230; <span class="java&#45;keyword">do</span> something with person
+        <span class="java&#45;keyword">return</span> person as XML
+    &#125;
+&#125;</pre></div>
+
+
+
+<h2 id="jsonproviders">5.3 JSON Providers</h2>
+
+
+JSON providers are superseded by domain object providers since <strong class="bold">jaxrs</strong> version 0.3.
+<ul class="star">
+<li><code>org.grails.jaxrs.provider.JSONReader</code> converts a JSON representation of a domain object into a <code>java.util.Map</code>. This map can be used for constructing domain objects.</li>
+<li><code>org.grails.jaxrs.provider.JSONWriter</code> converts an <code>grails.converters.JSON</code> object into a JSON representation.</li>
+</ul><p class="paragraph"/>Usage example:<p class="paragraph"/><div class="code"><pre><span class="java&#45;keyword">import</span> grails.converters.JSON<p class="paragraph"/>class PersonResource &#123;
+    @PUT
+    @Consumes('application/json')
+    @Produces('application/json')
+    JSON update(Map dto) &#123;
+        Person person = <span class="java&#45;keyword">new</span> Person(map)
+        // &#8230; <span class="java&#45;keyword">do</span> something with person
+        <span class="java&#45;keyword">return</span> person as JSON
+    &#125;
+&#125;</pre></div>
+
+
+
+<h2 id="customproviders">5.4 Custom Providers</h2>
+
+
+Applications can implement their own entity providers by placing them into the <code>grails-app/providers</code> directory. In
+order to be auto-detected by <strong class="bold">jaxrs</strong> they:
+<ul class="star">
+<li>must be annotated with <code>javax.ws.rs.ext.Provider</code>.</li>
+<li>must have a file name matching <code>*Reader.groovy</code> if the corresponding class implements <code>javax.ws.rs.ext.MessageBodyReader</code>.</li>
+<li>must have a file name matching <code>*Writer.groovy</code> if the corresponding class implements <code>javax.ws.rs.ext.MessageBodyWriter</code>.</li>
+</ul><p class="paragraph"/><h3>Custom Domain Object Providers</h3><p class="paragraph"/>For customizing the conversion between Grails domain objects and their XML or JSON representations, one has to disable
+the default domain object providers first. To disable the default domain object reader and writer, the following entries
+must be added to application configuration:
+<ul class="star">
+<li><code>org.grails.jaxrs.doreader.disable = true</code></li>
+<li><code>org.grails.jaxrs.dowriter.disable = true</code></li>
+</ul><p class="paragraph"/>In the following example a custom domain object writer is implemented, therefore, only the default domain object writer
+needs to be disabled. A custom XML creation should be done for the <code>Person</code> domain class (see
+<a href="../guide/single.html#scaffolding" class="guide">scaffolding example</a>), for all other classes the default XML creation should occur. Here's the custom
+provider.<p class="paragraph"/><div class="code"><pre><span class="java&#45;keyword">package</span> hello<p class="paragraph"/><span class="java&#45;keyword">import</span> javax.ws.rs.Produces
+<span class="java&#45;keyword">import</span> javax.ws.rs.ext.Provider
+<span class="java&#45;keyword">import</span> groovy.xml.MarkupBuilder
+<span class="java&#45;keyword">import</span> org.grails.jaxrs.support.DomainObjectWriterSupport<p class="paragraph"/>@Provider
+@Produces(&#91;'text/xml', 'application/xml', 'text/x&#45;json', 'application/json'&#93;)
+class CustomDomainObjectWriter <span class="java&#45;keyword">extends</span> DomainObjectWriterSupport &#123;
+    <span class="java&#45;keyword">protected</span> <span class="java&#45;object">Object</span> writeToXml(<span class="java&#45;object">Object</span> obj, OutputStream entityStream, <span class="java&#45;object">String</span> charset) &#123;
+        <span class="java&#45;keyword">if</span> (obj <span class="java&#45;keyword">instanceof</span> Person) &#123;
+            def writer = <span class="java&#45;keyword">new</span> OutputStreamWriter(entityStream, charset)
+            def builder = <span class="java&#45;keyword">new</span> MarkupBuilder(writer)
+            builder.person &#123;
+                id(obj.id)
+                fullName(<span class="java&#45;quote">"$&#123;obj.firstName&#125; $&#123;obj.lastName&#125;"</span>)
+            &#125;
+        &#125; <span class="java&#45;keyword">else</span> &#123;
+            <span class="java&#45;keyword">super</span>.writeToXml(obj, entityStream, charset)
+        &#125;
+    &#125;
+&#125;</pre></div><p class="paragraph"/>The custom provider overrides the <code>writeToXml</code> method and generates custom XML using a <code>MarkupBuilder</code>. To test this
+provider, create an application as described in the scaffolding example, create a folder <code>grails-app/provider/hello</code>,
+and place this custom provider there. The plugin will auto-detect the provider. To create a new person object in the
+database, send the following request:<p class="paragraph"/><div class="code"><pre>POST /api/person HTTP/1.1
+Content&#45;Type: application/xml
+Accept: application/xml
+Host: localhost:8080
+Content&#45;Length: 83<p class="paragraph"/>&#60;person&#62;
+    &#60;firstName&#62;Custom&#60;/firstName&#62;
+    &#60;lastName&#62;Tester&#60;/lastName&#62;
+&#60;/person&#62;</pre></div><p class="paragraph"/>The response entity is a custom XML representation created by the custom provider:<p class="paragraph"/><div class="code"><pre>HTTP/1.1 201 Created
+Content&#45;Type: application/xml
+Location: http://localhost:8080/api/person/3
+Transfer&#45;Encoding: chunked
+Server: Jetty(6.1.14)<p class="paragraph"/>&#60;person&#62;
+  &#60;id&#62;3&#60;/id&#62;
+  &#60;fullName&#62;Custom Tester&#60;/fullName&#62;
+&#60;/person&#62;</pre></div><p class="paragraph"/>There are several other protected <code>DomainObjectWriterSupport</code> methods for customizing the domain object marshalling, for
+example <code>writeToJson</code> to create custom JSON representations or <code>isWriteable</code> to narrow the set of domain classes that a
+custom domain object writer accepts. Refer to the the API docs for details.<p class="paragraph"/><h3>Further Entity Provider Support</h3><p class="paragraph"/>For simple use cases, the <strong class="bold">jaxrs</strong> plugin additionally provides the abstract classes:
+<ul class="star">
+<li><code>org.grails.jaxrs.support.MessageBodyReaderSupport&#60;T&#62;</code></li>
+<li><code>org.grails.jaxrs.support.MessageBodyWriterSupport&#60;T&#62;</code></li>
+</ul><p class="paragraph"/>These base classes can also be used for classes other than domain classes. Implementors define the supported Java type
+with a type parameter. For example, the following class is a <code>MessageBodyWriter</code> that supports conversions for a
+<code>Note</code> class.<p class="paragraph"/><div class="code"><pre>@Provider
+@Produces('application/xml')
+class NoteWriter <span class="java&#45;keyword">extends</span> MessageBodyWriterSupport&#60;Note&#62; &#123;
+    void writeTo(Note entity, MultivaluedMap httpHeaders, OutputStream entityStream) &#123;
+        def builder = <span class="java&#45;keyword">new</span> MarkupBuilder(<span class="java&#45;keyword">new</span> OutputStreamWriter(entityStream))
+        builder.note &#123;
+            // create custom XML here &#8230;
+        &#125;
+    &#125;
+&#125;</pre></div><p class="paragraph"/>Similarly, given a POJO named <code>UserDto</code>, the following reader provides object instances from their JSON representation:<p class="paragraph"/><div class="code"><pre>@Provider
+@Consumes(<span class="java&#45;quote">"application/json"</span>)
+class UserDtoReader <span class="java&#45;keyword">extends</span> MessageBodyReaderSupport&#60;UserDto&#62; &#123;
+    @Override
+    <span class="java&#45;keyword">public</span> UserDto readFrom(MultivaluedMap&#60;<span class="java&#45;object">String</span>, <span class="java&#45;object">String</span>&#62; httpHeaders,
+            InputStream entityStream) <span class="java&#45;keyword">throws</span> IOException,
+            WebApplicationException &#123;
+        <span class="java&#45;keyword">return</span> <span class="java&#45;keyword">new</span> JsonSlurper().parse(<span class="java&#45;keyword">new</span> InputStreamReader(entityStream))
+    &#125;
+&#125;</pre></div><p class="paragraph"/>For details about the <code>MessageBodyWriterSupport</code> and <code>MessageBodyReaderSupport</code> classes refer to the API docs.<p class="paragraph"/>Alternatively, you may of course write JAX-RS providers from scratch by using the JAX-RS API directly.
+
+
+
+<h1 id="configuration">6 Configuration</h1>
+
+
+While the plugin works well out of the box without any configuration, there are several configuration options available
+to change certain behaviors of the plugin.<p class="paragraph"/><h3>JAX-RS resource scope</h3><p class="paragraph"/>By default, JAX-RS resource classes are instantiated with every request which corresponds to the following entry in the
+application configuration:<p class="paragraph"/><div class="code"><pre>org.grails.jaxrs.resource.scope = 'prototype'</pre></div><p class="paragraph"/>Since this is the default you can omit this entry as well. On the other hand, if you prefer that your JAX-RS resources
+are singletons, add the following configuration entry.<p class="paragraph"/><div class="code"><pre>org.grails.jaxrs.resource.scope = 'singleton'</pre></div><p class="paragraph"/><h3>Domain object providers</h3><p class="paragraph"/>From version 0.3 onwards the <strong class="bold">jaxrs</strong> plugin comes with JAX-RS providers for converting between Grails domain objects
+and XML/JSON representations. Domain object providers are explained in detail in the domain object providers section.
+Domain object readers and writers can be disabled by adding the following entries to the application configuration.<p class="paragraph"/><div class="code"><pre>org.grails.jaxrs.doreader.disable = <span class="java&#45;keyword">true</span>
+org.grails.jaxrs.dowriter.disable = <span class="java&#45;keyword">true</span></pre></div><p class="paragraph"/>This is useful in situations where applications implement custom providers. Another domain object provider configuration
+property, <code>org.grails.jaxrs.dowriter.require.generic.collections</code>, is explained in the domain object collections
+section.<p class="paragraph"/><h3>Additional Providers</h3><p class="paragraph"/><blockquote class="note">
+This feature is only available when the plugin uses the Jersey implementation.
+</blockquote><p class="paragraph"/>By default the <strong class="bold">jaxrs</strong> plugin scans the <code>grails-app/providers</code> directory for custom providers. JAX-RS provider
+implementations located elsewhere (e.g. in 3rd party libraries) are ignored. This can be changed by defining extra paths
+where the plugin should scan for additional providers. For example by adding the following to the application
+configuration the plugin additionally scans the packages <code>com.foo</code> and <code>com.bar</code> for providers.<p class="paragraph"/><div class="code"><pre>org.grails.jaxrs.provider.extra.paths = 'com.foo;com.bar'</pre></div><p class="paragraph"/>You can also define extra paths by setting the corresponding init parameter.<p class="paragraph"/><div class="code"><pre>org.grails.jaxrs.provider.init.parameters = &#91;'com.sun.jersey.config.property.packages': 'com.foo;com.bar'&#93;</pre></div><p class="paragraph"/><h3>Init Parameters</h3><p class="paragraph"/>Init parameters for the servlet of the underlying JAX-RS implementation can be set via the
+<code>org.grails.jaxrs.provider.init.parameters</code> configuration property in the application configuration, as in the following
+example.<p class="paragraph"/><div class="code"><pre>org.grails.jaxrs.provider.init.parameters = &#91;
+    'com.sun.jersey.config.property.packages': 'com.foo;com.bar',
+    'another.key': 'another.value'
+&#93;</pre></div>
+
+
+<h1 id="swagger">7 Swagger Integration</h1>
+
+
+With the <strong class="bold">jersey1</strong> implementation of the JAX-RS plugin, <strong class="bold">Swagger 2.0</strong> support
+is built-in, although it is disabled by default.<p class="paragraph"/>When Swagger is enabled, the <code>/swagger.json</code> endpoint is exposed containing the
+details about the application's API services, assuming the resources are
+annotated with the proper
+<a href="https://github.com/swagger-api/swagger-core/wiki/Annotations-1.5.X" target="blank">Swagger annotations</a>.<p class="paragraph"/><h3>Configuration</h3><p class="paragraph"/>All of the <strong class="bold">Swagger</strong> configuration options are set under the path
+<code>org.grails.jaxrs.swagger</code>. The following options are available.<p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Configuration Property</strong></th><th><strong class="bold">Required</strong></th><th><strong class="bold">Description</strong></th><th><strong class="bold">Type</strong></th><th><strong class="bold">Default</strong></th></tr><tr class="table-odd"><td><code>enabled</code></td><td><img border="0" class="center" src="../img//bullet_red.png"></img></td><td>If true, <code>/swagger.json</code> will be exposed with details regarding the API service.</td><td><code>Boolean</code></td><td><code>false</code></td></tr><tr class="table-even"><td><code>beanConfigClassName</code></td><td>&#160;</td><td>The fully qualified class name of a custom instance of <code>BeanConfig</code> used to provide information about the API service. This is useful when applications need to provide additional information, such as security requirements.</td><td><code>String</code></td><td>&#160;</td></tr><tr class="table-odd"><td><code>resourcePackage</code></td><td><img border="0" class="center" src="../img//bullet_red.png"></img></td><td>The package that swagger should scan for JAX-RS resources. Multiple packages may be provided as a comma-separated list.</td><td><code>String</code></td><td>&#160;</td></tr><tr class="table-even"><td><code>version</code></td><td>&#160;</td><td>The API version number.</td><td><code>String</code></td><td><code>1</code></td></tr><tr class="table-odd"><td><code>title</code></td><td>&#160;</td><td>The title of the API service. If this is not set, the application name is used.</td><td><code>String</code></td><td>Application name.</td></tr><tr class="table-even"><td><code>description</code></td><td>&#160;</td><td>The description of the API service.</td><td><code>String</code></td><td>&#160;</td></tr><tr class="table-odd"><td><code>contact</code></td><td>&#160;</td><td>Contact information.</td><td><code>String</code></td><td>&#160;</td></tr><tr class="table-even"><td><code>license</code></td><td>&#160;</td><td>License name.</td><td><code>String</code></td><td>&#160;</td></tr><tr class="table-odd"><td><code>licenseUrl</code></td><td>&#160;</td><td>URL to information about the license.</td><td><code>String</code></td><td>&#160;</td></tr><tr class="table-even"><td><code>scan</code></td><td>&#160;</td><td>Whether Swagger should scan for resources.</td><td><code>Boolean</code></td><td><code>true</code></td></tr><tr class="table-odd"><td><code>baseUrl</code></td><td>&#160;</td><td>The base URL to the API service. This is useful when the application lives behind a load balancer.</td><td><code>String</code></td><td>The application's discovered base URL.</td></tr></table><p class="paragraph"/><h3>Swagger UI</h3><p class="paragraph"/>When the <code>jaxrs-swagger-ui</code> plugin is included in an application, the <strong class="bold">Swagger</strong>
+UI is exposed with the path <code>/showRestApi</code>. The UI has been modified only in
+that it is hardcoded to query the application itself for the <code>swagger.json</code>
+information.
+
+
+
+<h1 id="testing">8 Integration Testing</h1>
+
+
+The <strong class="bold">jaxrs-integration-test</strong> plugin contains classes that make integration testing resources much easier.<p class="paragraph"/>Integration tests for resources are created in the same way that other integration tests are created, except
+that the test spec classes should extend <code>JaxrsIntegrationSpec</code>. This class sets up a mocked servlet context
+that tests can use to send mocked requests through the JAX-RS servlet stack, effectively emulating the path
+real requests would take.<p class="paragraph"/><blockquote class="note">Integration tests will use the JAX-RS implementation that is included in the project.</blockquote><p class="paragraph"/><h3>JaxrsIntegrationSpec</h3><p class="paragraph"/>An example of a test may look something like:<p class="paragraph"/><div class="code"><pre><span class="java&#45;keyword">package</span> com.budjb<p class="paragraph"/><span class="java&#45;keyword">import</span> grails.test.mixin.integration.Integration
+<span class="java&#45;keyword">import</span> org.grails.plugins.jaxrs.test.JaxrsIntegrationSpec
+<span class="java&#45;keyword">import</span> org.grails.plugins.jaxrs.test.JaxrsRequestProperties<p class="paragraph"/>@Integration
+class TestResourceSpec <span class="java&#45;keyword">extends</span> JaxrsIntegrationSpec &#123;
+    def 'Ensure GET /api/test returns the correct content'() &#123;
+        when:
+        def response = makeRequest(<span class="java&#45;keyword">new</span> JaxrsRequestProperties(method: 'GET', uri: '/api/test'))<p class="paragraph"/>        then:
+        response.bodyAsString == 'Test'
+        response.status == 200
+    &#125;<p class="paragraph"/>    /&#42;&#42;
+     &#42; Return the list of additional resources to build the JAX&#45;RS servlet with.
+     &#42;
+     &#42; @<span class="java&#45;keyword">return</span>
+     &#42;/
+    @Override
+    List getResources() &#123;
+        <span class="java&#45;keyword">return</span> &#91;&#93;
+    &#125;
+&#125;</pre></div><p class="paragraph"/>Classes that extend <code>JaxrsIntegrationSpec</code> are required to implements the <code>getResources</code> method. This method
+is expected to return a list of classes that represent additional resources or providers that should be loaded by the
+JAX-RS implementation. This method is useful when there are test-specific resources or providers that tests require to
+operate. The advantage is that these test-specific classes need not be present on the classpath when the application is
+deployed, and so do not need to exist in the <code>src/main</code> folder.<p class="paragraph"/><h3>Making Requests</h3><p class="paragraph"/>The <code>JaxrsIntegrationSpec</code> contains a <code>makeRequest</code> method that should be used to make requests to a resource. This
+method sets up servlet requests and response objects, and hands the request off properly. The <code>makeRequest</code> method takes
+a <code>JaxrsRequestProperties</code> object as its parameter. This object contains several properties that make up a request.<p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th>Property</th><th>Description</th></tr><tr class="table-odd"><td><code>uri</code></td><td>Path of the request. This does not need the whole hostname of running application, but only the path to the resource being tested.</td></tr><tr class="table-even"><td><code>method</code></td><td>The string HTTP method to use with the request. Common values are  <em class="italic">GET</em> ,  <em class="italic">POST</em> ,  <em class="italic">PUT</em> , and  <em class="italic">DELETE</em> .</td></tr><tr class="table-odd"><td><code>contentType</code></td><td>The content type of the body of the request.</td></tr><tr class="table-even"><td><code>accept</code></td><td>The requested content type of the body of the response.</td></tr><tr class="table-odd"><td><code>headers</code></td><td>A map of headers, where the key is the name of the header and the value is the value of the header. Supports multi-valued headers.</td></tr><tr class="table-even"><td><code>characterEncoding</code></td><td>Character encoding of the request. Defaults to  <em class="italic">UTF-8</em> .</td></tr></table><p class="paragraph"/>The <code>makeRequest</code> method returns a <code>JaxrsResponseProperties</code> object containing important properties of the response, as
+well as a couple of convenience methods for converting the response body.<p class="paragraph"/><strong class="bold">Properties</strong>
+<table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th>Property</th><th>Description</th></tr><tr class="table-odd"><td><code>status</code></td><td>The HTTP status code of the response.</td></tr><tr class="table-even"><td><code>body</code></td><td>The body of the response, if applicable. This property is a byte array.</td></tr><tr class="table-odd"><td><code>contentType</code></td><td>The content type of the response, if applicable.</td></tr><tr class="table-even"><td><code>headers</code></td><td>The headers of the response.</td></tr></table><p class="paragraph"/><strong class="bold">Methods</strong>
+<table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th>Method</th><th>Description</th></tr><tr class="table-odd"><td><code>getBodyAsString()</code></td><td>Returns the body of the response as a <code>String</code>.</td></tr><tr class="table-even"><td><code>getBodyAsJson()</code></td><td>Parses the body of the response as JSON, and returns either a <code>List</code> or a <code>Map</code>.</td></tr><tr class="table-odd"><td><code>getBodyAsXml()</code></td><td>Parses the body of the response as XML, and returns a <code>GPathResult</code>.</td></tr></table>
+
+
+<h1 id="advanced">9 Advanced Features</h1>
+
+
+
+
+
+<h2 id="wadl">9.1 Generate WADL</h2>
+
+
+<blockquote class="note">
+Automatically generated WADL functionality is only available in version 0.4 of the <strong class="bold">jaxrs</strong> plugin or higher, and
+requires the Jersey implementation.
+</blockquote><p class="paragraph"/>A WADL document for resources managed by the plugin can be generated by sending a GET request to <code>/application.wadl</code>.
+The result should look like:<p class="paragraph"/><div class="code"><pre>&#60;application xmlns=<span class="java&#45;quote">"http://research.sun.com/wadl/2006/10"</span>&#62;
+  &#60;doc xmlns:jersey=<span class="java&#45;quote">"http://jersey.dev.java.net/"</span> jersey:generatedBy=<span class="java&#45;quote">"Jersey: 1.1.4.1 11/24/2009 01:30 AM"</span>/&#62;
+  &#60;resources base=<span class="java&#45;quote">"http://localhost:8080/"</span>&#62;
+    &#60;resource path=<span class="java&#45;quote">"/api/test"</span>&#62;
+      &#60;method name=<span class="java&#45;quote">"GET"</span> id=<span class="java&#45;quote">"getTestRepresentation"</span>&#62;
+        &#60;request&#62;
+          &#60;param xmlns:xs=<span class="java&#45;quote">"http://www.w3.org/2001/XMLSchema"</span> type=<span class="java&#45;quote">"xs:string"</span> style=<span class="java&#45;quote">"query"</span> name=<span class="java&#45;quote">"name"</span>/&#62;
+        &#60;/request&#62;
+        &#60;response&#62;
+          &#60;representation mediaType=<span class="java&#45;quote">"text/plain"</span>/&#62;
+        &#60;/response&#62;
+      &#60;/method&#62;
+    &#60;/resource&#62;
+  &#60;/resources&#62;
+&#60;/application&#62;</pre></div>
+
+
+
+<h2 id="scaffolding">9.2 Scaffolding Domains</h2>
+
+
+The <strong class="bold">jaxrs</strong> plugin also supports scaffolding. It allows you to generate a RESTful service interface for one or more
+domain classes based on JAX-RS resource classes. Supported representation formats are XML and JSON. The following
+sections walk through a simple example.<p class="paragraph"/><h3>Create a domain class</h3><p class="paragraph"/>To create a <code>Person</code> domain class go to the project's root directory and enter:<p class="paragraph"/><div class="code"><pre>grails create&#45;domain&#45;class person</pre></div><p class="paragraph"/>Open the generated <code>Person.groovy</code> file (under <code>grails-app/domain</code>) and add two properties, <code>firstName</code> and <code>lastName</code>.<p class="paragraph"/><div class="code"><pre><span class="java&#45;keyword">package</span> hello<p class="paragraph"/>class Person &#123;<p class="paragraph"/>    <span class="java&#45;keyword">static</span> constraints = &#123;
+    &#125;<p class="paragraph"/>    <span class="java&#45;object">String</span> firstName<p class="paragraph"/>    <span class="java&#45;object">String</span> lastName<p class="paragraph"/>&#125;</pre></div><p class="paragraph"/><h3>Generate the REST API</h3><p class="paragraph"/>To generate JAX-RS resources that implement the RESTful service interface for that domain class enter:<p class="paragraph"/><div class="code"><pre>grails generate&#45;resources hello.Person</pre></div><p class="paragraph"/>This will generate two resource classes, <code>PersonCollectionResource.groovy</code> and <code>PersonResource.groovy</code>
+(in the <code>hello</code> package) that support HTTP POST, GET, PUT and DELETE operations for creating, reading, updating and
+deleting <code>Person</code> objects, respectively. <code>PersonCollectionResource.groovy</code> is related to <code>Person</code> lists,
+<code>PersonResource.groovy</code> is related to individual <code>Person</code> instances. Let's take a look at how to use the generated
+RESTful service interface.<p class="paragraph"/><h3>Use the REST API</h3><p class="paragraph"/>Start the hello application with:<p class="paragraph"/><div class="code"><pre>grails run&#45;app</pre></div><p class="paragraph"/>New person objects can be created by POSTing to <code>http://localhost:8080/api/person</code>. The following request POSTs an XML
+representation of a person object.<p class="paragraph"/><div class="code"><pre>POST /api/person HTTP/1.1
+Content&#45;Type: application/xml
+Accept: application/xml
+Host: localhost:8080
+Content&#45;Length: 82<p class="paragraph"/>&#60;person&#62;
+    &#60;firstName&#62;Sam&#60;/firstName&#62;
+    &#60;lastName&#62;Hill&#60;/lastName&#62;
+&#60;/person&#62;</pre></div><p class="paragraph"/>The Content-Type header must be set either to <code>application/xml</code>. After sending the request, the server creates a new
+person object in the database and returns an XML representation of it.<p class="paragraph"/><div class="code"><pre>HTTP/1.1 201 Created
+Content&#45;Type: application/xml
+Location: http://localhost:8080/api/person/1
+Transfer&#45;Encoding: chunked
+Server: Jetty(6.1.14)<p class="paragraph"/>&#60;?xml version=<span class="java&#45;quote">"1.0"</span> encoding=<span class="java&#45;quote">"UTF&#45;8"</span>?&#62;
+&#60;person id=<span class="java&#45;quote">"1"</span>&#62;
+    &#60;firstName&#62;Sam&#60;/firstName&#62;
+    &#60;lastName&#62;Hill&#60;/lastName&#62;
+&#60;/person&#62;</pre></div><p class="paragraph"/>The client explicitly requested an XML representation via the <code>Accept</code> request header. Note that the returned
+representation differs from the submitted representation by an <code>id</code> attribute in the <code>&#60;person&#62;</code> element. This <code>id</code> is
+also contained in the <code>Location</code> response header, the URL of the created resource. The response code is <code>201 (CREATED)</code>.
+Let's create another person object using a JSON representation. Here's the request:<p class="paragraph"/><div class="code"><pre>POST /api/person HTTP/1.1
+Content&#45;Type: application/json
+Accept: application/json
+Host: localhost:8080
+Content&#45;Length: 58<p class="paragraph"/>&#123;<span class="java&#45;quote">"class"</span>:<span class="java&#45;quote">"Person"</span>,<span class="java&#45;quote">"firstName"</span>:<span class="java&#45;quote">"Fabien"</span>,<span class="java&#45;quote">"lastName"</span>:<span class="java&#45;quote">"Barel"</span>&#125;</pre></div><p class="paragraph"/>The response also contains a JSON representation of the created person (see <code>Accept</code> request header). The <code>id</code> of the
+created person object is <code>2</code>.<p class="paragraph"/><div class="code"><pre>HTTP/1.1 201 Created
+Content&#45;Type: application/json
+Location: http://localhost:8080/api/person/2
+Transfer&#45;Encoding: chunked
+Server: Jetty(6.1.14)<p class="paragraph"/>&#123;<span class="java&#45;quote">"class"</span>:<span class="java&#45;quote">"Person"</span>,<span class="java&#45;quote">"id"</span>:<span class="java&#45;quote">"2"</span>,<span class="java&#45;quote">"firstName"</span>:<span class="java&#45;quote">"Fabien"</span>,<span class="java&#45;quote">"lastName"</span>:<span class="java&#45;quote">"Barel"</span>&#125;</pre></div><p class="paragraph"/>Content negotiation via <code>Content-Type</code> and <code>Accept</code> headers works for other HTTP methods as well. To GET a list of
+created persons, open a browser (Firefox in our example) and enter the URL <code>http://localhost:8080/api/person</code>.
+This returns an XML representation of the list of persons stored in the database.<p class="paragraph"/><div class="code"><pre>&#60;list&#62;
+    &#60;person id=<span class="java&#45;quote">"1"</span>&#62;
+        &#60;firstName&#62;Sam&#60;/firstName&#62;
+        &#60;lastName&#62;Hill&#60;/lastName&#62;
+    &#60;/person&#62;
+    &#60;person id=<span class="java&#45;quote">"2"</span>&#62;
+        &#60;firstName&#62;Fabien&#62;&#60;/firstName&#62;
+        &#60;lastName&#62;Barel&#60;/lastName&#62;
+    &#60;/person&#62;
+&#60;/list&#62;</pre></div><p class="paragraph"/>An XML representation is returned because Firefox sets an <code>Accept=text/html,application/xhtml+xml,application/xml;q=0.9,<strong class="bold">/</strong>;q=0.8</code>
+request header. To get the representation of a single person, specify the <code>id</code> in the URL. For example, to get the
+person with <code>id</code> <code>1</code> use <code>http://localhost:8080/api/person/1</code><p class="paragraph"/><div class="code"><pre>&#60;person id=<span class="java&#45;quote">"1"</span>&#62;
+    &#60;firstName&#62;Sam&#60;/firstName&#62;
+    &#60;lastName&#62;Hill&#60;/lastName&#62;
+&#60;/person&#62;</pre></div><p class="paragraph"/>If you try to get a person that doesn't exist, an error message (with a status code <code>404</code>) is returned.<p class="paragraph"/><div class="code"><pre>&#60;error&#62;Person with id 3 not found&#60;/error&#62;</pre></div><p class="paragraph"/>In the next step we update the first name of person <code>1</code> by PUTting a new representation to
+<code>http://localhost:8080/api/person/1</code>.<p class="paragraph"/><div class="code"><pre>PUT /api/person/1 HTTP/1.1
+Content&#45;Type: application/xml
+Accept: application/xml
+Host: localhost:8080
+Content&#45;Length: 85<p class="paragraph"/>&#60;person&#62;
+    &#60;firstName&#62;Samuel&#60;/firstName&#62;
+    &#60;lastName&#62;Hill&#60;/lastName&#62;
+&#60;/person&#62;</pre></div><p class="paragraph"/>The response is a new representation of the updated person.<p class="paragraph"/><div class="code"><pre>HTTP/1.1 200 OK
+Content&#45;Type: application/xml
+Transfer&#45;Encoding: chunked
+Server: Jetty(6.1.14)<p class="paragraph"/>&#60;?xml version=<span class="java&#45;quote">"1.0"</span> encoding=<span class="java&#45;quote">"UTF&#45;8"</span>?&#62;
+&#60;person id=<span class="java&#45;quote">"1"</span>&#62;
+    &#60;firstName&#62;Samuel&#60;/firstName&#62;
+    &#60;lastName&#62;Hill&#60;/lastName&#62;
+&#60;/person&#62;</pre></div><p class="paragraph"/>GETting the person list again shows the update of person <code>1</code>.<p class="paragraph"/><div class="code"><pre>&#60;list&#62;
+    &#60;person id=<span class="java&#45;quote">"1"</span>&#62;
+        &#60;firstName&#62;Samuel&#60;/firstName&#62;
+        &#60;lastName&#62;Hill&#60;/lastName&#62;
+    &#60;/person&#62;
+    &#60;person id=<span class="java&#45;quote">"2"</span>&#62;
+        &#60;firstName&#62;Fabien&#62;&#60;/firstName&#62;
+        &#60;lastName&#62;Barel&#60;/lastName&#62;
+    &#60;/person&#62;
+&#60;/list&#62;</pre></div><p class="paragraph"/>Finally, we delete person <code>1</code> by sending a DELETE request to <code>http://localhost:8080/api/person/1</code>.<p class="paragraph"/><div class="code"><pre>DELETE /api/person/1 HTTP/1.1
+Accept: application/xml
+Host: localhost:8080</pre></div><p class="paragraph"/>GETting the person lists again shows that person 1 has actually been deleted.<p class="paragraph"/><div class="code"><pre>&#60;list&#62;
+    &#60;person id=<span class="java&#45;quote">"2"</span>&#62;
+        &#60;firstName&#62;Fabien&#62;&#60;/firstName&#62;
+        &#60;lastName&#62;Barel&#60;/lastName&#62;
+    &#60;/person&#62;
+&#60;/list&#62;</pre></div>
+
+
+<h2 id="gorm">9.3 Using GORM</h2>
+
+
+This section explains what's happening behind the scenes of the scaffolding example and how GORM inside JAX-RS resource
+classes.<p class="paragraph"/><h3>PersonCollectionResource.groovy</h3><p class="paragraph"/>Here's the source code for <code>PersonCollectionResource.groovy</code>.
+<div class="code"><pre><span class="java&#45;keyword">package</span> hello<p class="paragraph"/><span class="java&#45;keyword">import</span> <span class="java&#45;keyword">static</span> org.grails.jaxrs.response.Responses.&#42;<p class="paragraph"/><span class="java&#45;keyword">import</span> javax.ws.rs.Consumes
+<span class="java&#45;keyword">import</span> javax.ws.rs.GET
+<span class="java&#45;keyword">import</span> javax.ws.rs.Produces
+<span class="java&#45;keyword">import</span> javax.ws.rs.Path
+<span class="java&#45;keyword">import</span> javax.ws.rs.PathParam
+<span class="java&#45;keyword">import</span> javax.ws.rs.POST
+<span class="java&#45;keyword">import</span> javax.ws.rs.core.Response<p class="paragraph"/>@Path('/api/person')
+@Consumes(&#91;'application/xml','application/json'&#93;)
+@Produces(&#91;'application/xml','application/json'&#93;)
+class PersonCollectionResource &#123;<p class="paragraph"/>    @POST
+    Response create(Person dto) &#123;
+        created dto.save()
+    &#125;<p class="paragraph"/>    @GET
+    Response readAll() &#123;
+        ok Person.findAll()
+    &#125;<p class="paragraph"/>    @Path('/&#123;id&#125;')
+    PersonResource getResource(@PathParam('id') <span class="java&#45;object">String</span> id) &#123;
+        <span class="java&#45;keyword">new</span> PersonResource(id:id)
+    &#125;
+&#125;</pre></div>
+It is based on JSR 311 classes and annotations and uses static methods from <code>org.grails.jaxrs.response.Responses</code>. This
+is a helper class provided by the plugin that implements a very simple DSL consisting of elements created and ok.
+Supported content types for requests and responses are <code>application/xml</code> and <code>application/json</code>. This is given by the
+class-level <code>Consumes</code> and <code>Produces</code> annotations.<p class="paragraph"/>The <code>PersonCollectionResource</code> class responds to HTTP operations that are related to person lists. The URL of the person
+list is <code>http://localhost:8080/api/person</code> where the <code>/api/person</code> path is defined by the class-level
+<code>Path('/api/person')</code> annotation.
+<ul class="star">
+<li>The <code>create</code> method responds to POST requests by storing a new <code>Person</code> object in the database using GORM. The XML or&#10;  JSON request entity is converted by the plugin to a <code>Person</code> domain object and passed to the method via a dto&#10;  parameter. The conversion is done by a domain object provider. The persisted domain object is passed to the created&#10;  method which creates a response from it using the JAX-RS API (see source code for details). The created method&#10;  constructs a URI for the <code>Location</code> response header from the domain object <code>id</code>. The <code>Person</code> object is set to the&#10;  Response entity.</li>
+<li>The <code>readAll</code> method responds to GET requests and returns a person list. Again we use GORM to get all person objects&#10;  from the database and pass that list as argument to the <code>ok</code> method. This method uses the JAX-RS API to create a&#10;  response (see link source code for details).</li>
+<li>The <code>getResource</code> method creates another JAX-RS resource whenever a request to the URI template&#10;  <code>http://localhost:8080/api/person/{id}</code> is made. The <code>id</code> path parameter in the template is bound to the id parameter&#10;  of the <code>getResource</code> method. The created JAX-RS <code>PersonResource</code> is then used by the JAX-RS runtime to handle the&#10;  request to the person with the given id.</li>
+</ul><p class="paragraph"/><h3>PersonResource.groovy</h3><p class="paragraph"/>Here's the source code for <code>PersonResource.groovy</code>.<p class="paragraph"/><div class="code"><pre><span class="java&#45;keyword">package</span> hello<p class="paragraph"/><span class="java&#45;keyword">import</span> <span class="java&#45;keyword">static</span> org.grails.jaxrs.response.Responses.&#42;<p class="paragraph"/><span class="java&#45;keyword">import</span> javax.ws.rs.Consumes
+<span class="java&#45;keyword">import</span> javax.ws.rs.DELETE
+<span class="java&#45;keyword">import</span> javax.ws.rs.GET
+<span class="java&#45;keyword">import</span> javax.ws.rs.Produces
+<span class="java&#45;keyword">import</span> javax.ws.rs.PUT
+<span class="java&#45;keyword">import</span> javax.ws.rs.core.Response<p class="paragraph"/><span class="java&#45;keyword">import</span> org.grails.jaxrs.provider.DomainObjectNotFoundException<p class="paragraph"/>@Consumes(&#91;'application/xml','application/json'&#93;)
+@Produces(&#91;'application/xml','application/json'&#93;)
+class PersonResource &#123;<p class="paragraph"/>    def id<p class="paragraph"/>    @GET
+    Response read() &#123;
+        def obj = Person.get(id)
+        <span class="java&#45;keyword">if</span> (!obj) &#123;
+            <span class="java&#45;keyword">throw</span> <span class="java&#45;keyword">new</span> DomainObjectNotFoundException(Person.class, id)
+        &#125;
+        ok obj
+    &#125;<p class="paragraph"/>    @PUT
+    Response update(Person dto) &#123;
+        def obj = Person.get(id)
+        <span class="java&#45;keyword">if</span> (!obj) &#123;
+            <span class="java&#45;keyword">throw</span> <span class="java&#45;keyword">new</span> DomainObjectNotFoundException(Person.class, id)
+        &#125;
+        obj.properties = dto.properties
+        ok obj
+    &#125;<p class="paragraph"/>    @DELETE
+    void delete() &#123;
+        def obj = Person.get(id)
+        <span class="java&#45;keyword">if</span> (obj) &#123;
+            obj.delete()
+        &#125;
+    &#125;
+&#125;</pre></div><p class="paragraph"/>The <code>id</code> property is set during construction of the resource and is used for database operations. This class implements
+the methods <code>read</code>, <code>update</code> and <code>delete</code> to handle GET, PUT and DELETE requests, respectively. It also uses GORM for
+database operations and relies on helper methods of <code>org.grails.jaxrs.response.Responses</code> to create responses via the
+JAX-RS API.<p class="paragraph"/>If there's no person with given <code>id</code> in the database, a <code>DomainObjectNotFoundException</code> is thrown. This exception class
+generates a custom 404 response using the JAX-RS API (see source code for details).
+
+
+<h2 id="filters">9.4 Applying Filters</h2>
+
+
+Grails filters can be applied to JAX-RS resources as well. For example, to add a filter for the <code>/api/test/<strong class="bold"></strong></code> URL
+pattern, create a file <code>TestFilters.groovy</code> under <code>grails-app/conf</code> that looks like:<p class="paragraph"/><blockquote class="warning">
+Filters have been deprecated in Grails 3. This documentation will be updated with details about using interceptors.
+</blockquote><p class="paragraph"/><div class="code"><pre>class TestFilters &#123;<p class="paragraph"/>    def filters = &#123;<p class="paragraph"/>        testUris(uri:'/api/test/&#42;&#42;') &#123;
+            before = &#123;
+                // <span class="java&#45;keyword">do</span> some preprocessing
+            &#125;
+            after = &#123;
+                // <span class="java&#45;keyword">do</span> some postprocessing
+            &#125;<p class="paragraph"/>        &#125;
+    &#125;
+&#125;</pre></div>
+
+
+
+<h2 id="injection">9.5 Service Injection</h2>
+
+
+Services can be auto-injected into resource and provider objects by name. Assue we have a service class named
+<code>TestService.groovy</code> in <code>grails-app/services</code> that looks like:<p class="paragraph"/><div class="code"><pre><span class="java&#45;keyword">package</span> hello<p class="paragraph"/>class TestService &#123;<p class="paragraph"/>     <span class="java&#45;object">String</span> greet(<span class="java&#45;object">String</span> name) &#123;
+         'Hello ' + (name ? name : 'unknown')
+     &#125;
+&#125;</pre></div><p class="paragraph"/>We can then auto-inject the service by defining a <code>testService</code> property like in the following resource class.<p class="paragraph"/><div class="code"><pre><span class="java&#45;keyword">package</span> hello<p class="paragraph"/>@Path('/api/test')
+class TestResource &#123;<p class="paragraph"/>    def testService // injected<p class="paragraph"/>    @GET
+    @Produces('text/plain')
+    <span class="java&#45;object">String</span> getTestRepresentation(@QueryParam('name') <span class="java&#45;object">String</span> name) &#123;
+        testService.greet(name)
+    &#125;
+&#125;</pre></div>
+
+
+
+<h2 id="google">9.6 Google App Engine</h2>
+
+
+This section describes how to get the hello world example running on Google App Engine.<p class="paragraph"/><blockquote class="note">
+This section has been untested with Grails 3. If this documentation is out of date, please submit an issue or
+contribute updated documentation in a pull request.
+</blockquote>
+<ul class="star">
+<li>Install the Grails app-engine plugin.</li>
+<li>Create a Grails application and JAX-RS resource as described in the hello world example.</li>
+<li>Be sure to use the <strong class="bold">jaxrs-restlet</strong> implementation plugin.</li>
+<li>Add the following entries to the Grails configuration:</li>
+</ul><p class="paragraph"/><div class="code"><pre>// replace &#60;application&#45;name&#62; with the
+// actual App Engine application name
+google.appengine.application='&#60;application&#45;name&#62;'</pre></div>
+<ul class="star">
+<li>Open a shell at the root directory of the hello world application.</li>
+<li>Set the application version to 1 with:</li>
+</ul><p class="paragraph"/><div class="code"><pre>grails set&#45;version 1</pre></div>
+<ul class="star">
+<li>Run the application locally with <code>grails app-engine run</code>.</li>
+<li>Enter the URL <code>http://localhost:8080/test?name=Tester</code> into your browser and the browser window should display&#10;   <em class="italic">Hello Tester</em> .</li>
+<li>Package the plugin with <code>grails app-engine package</code>.</li>
+<li>Deploy the application with the <code>appcfg</code> command-line tool from your App Engine SDK.</li>
+<ul class="star">
+<li>On Linux, enter:</li>
+</ul></ul><p class="paragraph"/><div class="code"><pre>$APPENGINE_HOME/bin/appcfg.sh update ./target/war</pre></div>
+<ul class="star">
+<ul class="star">
+<li>On Windows, enter:</li>
+</ul></ul><p class="paragraph"/><div class="code"><pre>%APPENGINE_HOME%&#98;in&#97;ppcfg.cmd update .&#116;arget&#119;ar</pre></div>
+<ul class="star">
+<li>When prompted enter email and password to authenticate at Google App Engine.</li>
+<li>Once deployment is done go enter the URL <code>http://&#60;application-name&#62;.appspot.com/test?name=Tester</code> into your browser&#10;  and the browser window should display  <em class="italic">Hello Tester</em> . It may take 10-20 seconds for Google App Engine to initialize&#10;  the Grails application the first time. Subsequent requests are served much faster.</li>
+</ul><p class="paragraph"/><blockquote class="note">
+Using scaffolding together with the gorm-jpa plugin is not supported at the moment. A related feature request has
+already been added to the issue tracker.
+</blockquote>
+
+
+<h1 id="acknowledgements">10 Acknowledgements</h1>
+
+
+The <strong class="bold">jaxrs</strong> plugin has a long history and has had many contributions. This section will serve to acknowledge those
+contributions and give proper credit and thanks for everyone's work.<p class="paragraph"/>The biggest thanks go to <a href="https://github.com/krasserm" target="blank">Martin Krasser</a>,
+<a href="https://github.com/davidecavestro" target="blank">Davide Cavestro</a>, and <a href="https://github.com/noamt" target="blank">Noam Y. Tenne</a> for their work on the
+development and maintenance of the plugin. The plugin may have gone through some structural changes, but the code and
+logic is either mostly intact or derived from their work. Additionally, the documentation includes significant sections
+of the original plugin documentation from the <a href="https://github.com/krasserm/grails-jaxrs/wiki" target="blank">GitHub wiki</a>.<p class="paragraph"/>Thank you also to <a href="https://github.com/donald-jackson" target="blank">Donald Jackson</a> for his work on starting the adaption of the plugin
+for Grails 3.
+
+
+<h1 id="changelog">11 Changelog</h1>
+
+
+
+
+
+<h2 id="v3changelog">11.1 Grails 3.x</h2>
+
+
+<h3>Version 3.1.0</h3>
+<ul class="star">
+<li>Upgrade to support Grails 3.3.x (huge thanks <a href="https://github.com/avscj" target="blank">Alex Stoia</a>!)</li>
+</ul><p class="paragraph"/><h3>Version 3.0.4</h3>
+<ul class="star">
+<li>Integrate <strong class="bold">Swagger</strong> into the <code>jaxrs-jersey1</code> plugin.</li>
+<li>Introduce the <code>jaxrs-swagger-ui</code> plugin.</li>
+</ul><p class="paragraph"/><h3>Version 3.0.3</h3>
+<ul class="star">
+<li>Added missing <code>jersey-client</code> dependency for the <strong class="bold">jersey1</strong> plugin.&#10;  (<a href="https://github.com/budjb/grails-jaxrs/issues/25" target="blank">#25</a>)</li>
+<li>Refactored JAX-RS servlet initialization order due to call order differences between the embedded tomcat&#10;  server and the standalone tomcat server. (<a href="https://github.com/budjb/grails-jaxrs/issues/26" target="blank">#26</a>)</li>
+</ul><p class="paragraph"/><h3>Version 3.0.2</h3>
+<ul class="star">
+<li>Add <code>ResourceRegistrar</code> and <code>ScanningResourceRegistrar</code> so that applications and plugins can provide a set of&#10;  resources or providers outside of the normal artefact scanning process.</li>
+<li>Move integration tests out of the <code>jaxrs-core</code> plugin and into the <code>jaxrs-integration-test</code> plugin.</li>
+<li>Add tests to the <code>jaxrs-restlet</code> plugin.</li>
+<li>Changed how URL mappings work:</li>
+<li>URL mappings are no longer configured statically via application configuration.</li>
+<li>URL mappings are compiled by scanning resource classes and their methods, and a new URL mapping entry will be added&#10;    per unique path. This works for both resource classes present in <code>grails-app/resources</code> and other resource classes&#10;    registered via other means.</li>
+<li>Update restlet to 2.3.6.</li>
+</ul><p class="paragraph"/><h3>Version 3.0.1</h3>
+<ul class="star">
+<li>Fix <strong class="bold">jaxrs-core</strong> plugin descriptor class name.</li>
+<li>Compile the plugin with JDK 1.7 compatibility.</li>
+<li>Update authors.</li>
+<li>Fill in missing information in plugin descriptor files.</li>
+<li>Lowered Grails version requirement to 3.0.0.</li>
+</ul><p class="paragraph"/><h3>Version 3.0.0</h3>
+This is the initial release of the <strong class="bold">jaxrs</strong> project for Grails 3. Structurally, this is a major refactor from the
+existing codebase. Procedurally, the plugin has not changed much.<p class="paragraph"/>Major changes include:
+<ul class="star">
+<li>Plugin has been broken up into several plugins.</li>
+<ul class="star">
+<li><strong class="bold">jaxrs-core</strong> contains the base logic for the plugin but will not work standalone.</li>
+<li><strong class="bold">jaxrs-jersey1</strong> uses the Jersey 1.9 implementation.</li>
+<li><strong class="bold">jaxrs-restlet</strong> uses the Restlet 2.1.4 implementation.</li>
+<li><strong class="bold">jaxrs-integration-test</strong> provides base classes to test resources in integration tests.</li>
+</ul>
+<li>Most source files have been changed from <code>&#42;.java</code> to <code>&#42;.groovy</code> files.</li>
+<li>Many class packages have changed, and all class packages have been moved under <code>org.grails.plugins.jaxrs</code>.</li>
+<li>Grails-generated <a href="http://budjb.github.io/grails-jaxrs/latest/" target="blank">documentation</a> has been created.</li>
+<li>Ownership and maintenance of the project has been transferred.</li>
+</ul><p class="paragraph"/>
+
+
+<h2 id="v2changelog">11.2 Grails 2.x</h2>
+
+
+<h3>Version 0.11</h3>
+<blockquote class="warning">
+Version 0.11 of the plugin is a release of the Grails 2.4.x compatibility branch and is probably not compatible with any
+previous versions.
+</blockquote>
+<ul class="star">
+<li>Grails 2.4.x compatibility modifications.</li>
+</ul><p class="paragraph"/><h3>Version 0.10</h3>
+<blockquote class="warning">
+Version 0.10 of the plugin is a release of the Grails 2.3.x compatibility branch and is probably not compatible with any
+previous versions.
+</blockquote>
+<ul class="star">
+<li>Re-introduced Spock testing infrastructure using Spock bundled with Grails 2.3.x</li>
+<li>Includes all fixes and features added to the release of version 0.9.</li>
+<li>Grails 2.3.x compatibility modifications.</li>
+<li>Upgrade to Restlet 2.1.4.</li>
+</ul><p class="paragraph"/><h3>Version 0.9</h3>
+<blockquote class="note">
+To improve the compatibility of this plugin across Groovy and Grails versions, the Spock test infrastructure has been
+removed and is now available through the new <a href="https://github.com/noamt/grails-jaxrs-spock" target="blank">Grails JAXRS-Spock plugin</a>.
+Please review the new plugin's README file for installation instructions.
+</blockquote>
+<ul class="star">
+<li>Added exclusions for un-required dependencies.</li>
+<li>Modified the order of the servlet configuration; the load-on-startup field is now specified last.</li>
+<li>Add the ability to specify query parameters in the test request path.</li>
+<li>Take Encoding into consideration when decoding the input stream.</li>
+<li>Remove copy-pasted MockHttpServletRequest from plugin.</li>
+<li>Allow for multiple resources creation at once.</li>
+<li>Downgraded the Grails version requirement to 2.0.x.</li>
+</ul><p class="paragraph"/><h3>Version 0.8</h3>
+<blockquote class="warning">
+This version enables the plugin to be used by Grails 2.2.x applications but breaks backwards compatibility for versions
+prior to 2.2.x.
+</blockquote><p class="paragraph"/><h3>Version 0.7</h3>
+<ul class="star">
+<li>Enhancement: Added infrastructure to enable Spock integration testing</li>
+<li>Fix: Cannot use <strong class="bold">jaxrs</strong> 0.6 with servlet 2.5 (it needs servlet api 3.0).</li>
+<li>Fix: Removed usages of the deprecated Grails ConfigurationHolder.</li>
+</ul><p class="paragraph"/><h3>Version 0.6</h3>
+<ul class="star">
+<li>Upgrade to Grails 2.0.0</li>
+<li>Upgrade to Jersey 1.8</li>
+<li>Enhancement: Allow applications to configure init parameters for the <code>JerseyServlet</code></li>
+<li>Enhancement: Separate service class used by generated resources</li>
+<li>Enhancement: Transaction boundaries in generated resource code</li>
+<li>Enhancement: Support deep object conversion in domain object providers</li>
+<li>Fix: Support for alphanumeric domain object identifiers</li>
+<li>Fix: POST method doesn't work</li>
+<li>Fix: <code>java.lang.IllegalStateException: getOutputStream() has already been called for this response</code></li>
+</ul><p class="paragraph"/><h3>Version 0.5-m1</h3>
+<ul class="star">
+<li>New integration test framework</li>
+<li>Upgrade to Grails 1.3.7</li>
+<li>Upgrade to Jersey 1.5</li>
+<li>Enhancement: Add support for configuring Jersey with additional provider paths</li>
+<li>Enhancement: Switch to Grails' dependency management mechanism</li>
+<li>Enhancement: <code>JaxrsController</code> moved to package <code>org.grails.jaxrs</code></li>
+<li>Fix: Responses with Content-Type <code>text/html</code> eaten by Grails</li>
+<li>Fix: Service injection into resources doesn't work in integration tests</li>
+</ul><p class="paragraph"/><h3>Version 0.4</h3>
+<ul class="star">
+<li>Automated generation of WADL documents (with some known limitations)</li>
+<li>Upgrade to Grails 1.3.1</li>
+<li>Upgrade to Jersey 1.2</li>
+<li>Upgrade to Restlet 2.0-RC3</li>
+<li>Fix: Object ids in XML or JSON requests are not set on the domain object.</li>
+<li>Fix: Unmarshalling from JSON (and XML) to nested domain objects doesn't work properly</li>
+</ul><p class="paragraph"/><blockquote class="note">
+There's a bug (issue 971) in Restlet 2.0-RC3 that forces implementors of <code>MessageBodyReader</code> and <code>MessageBodyWriter</code> to
+directly implement these interfaces. Extending a class that implements these interfaces doesn't work. Restlet will
+ignore the provider in this case.
+</blockquote><p class="paragraph"/><h3>Version 0.3</h3>
+<ul class="star">
+<li>Domain object providers</li>
+<ul class="star">
+<li>Convert between Grails domain objects and XML or JSON representations</li>
+<li>Allow usage of Grails domain classes in resource method signatures</li>
+<li>Support for content negotiation using the Accept request header</li>
+<li>Can be disabled by means of configuration</li>
+</ul>
+<li>Custom entity provider support</li>
+<ul class="star">
+<li>Base classes for custom domain object providers</li>
+<ul class="star">
+<li><code>org.grails.jaxrs.support.DomainObjectReaderSupport</code></li>
+<li><code>org.grails.jaxrs.support.DomainObjectWriterSupport</code></li>
+</ul>
+<li>Base classes for more general entity providers (improved)</li>
+<ul class="star">
+<li><code>org.grails.jaxrs.support.MessageBodyReaderSupport</code></li>
+<li><code>org.grails.jaxrs.support.MessageBodyWriterSupport</code></li>
+</ul>
+</ul>
+<li>Scaffolding enhancements</li>
+<ul class="star">
+<li>XML and JSON representations</li>
+<li>Content negotiation support</li>
+</ul>
+<li>Auto-detection of JAX-RS resource classes better aligned with the JAX-RS specification (incl. support for annotation&#10;  inheritance)</li>
+<li>Auto-detection of JAX-RS provider classes better aligned with the JAX-RS specification</li>
+<li>Default URL mapping for <code>JaxrsController</code> changed</li>
+<li>Upgrade to Grails 1.1.2</li>
+<li>Upgrade to Jersey 1.1.4.1</li>
+<li>Upgrade to Restlet 2.0-M6</li>
+</ul><p class="paragraph"/><h3>Version 0.2</h3>
+In version 0.2 the way how JAX-RS resources and providers are auto-detected has changed. In version 0.1 plain Spring
+mechanisms were used (<code>&#60;context:component-scan /&#62;</code>, <code>Component</code> annotation, etc.) whereas in version 0.2 the plugin
+follows Grails conventions regarding how to detect and manage resources. Now, there's no need to provide a custom Spring
+application context. The <strong class="bold">jaxrs</strong> plugin is now making these changes behind the scenes.<p class="paragraph"/>Similar changes have been introduced for injection of other beans into JAX-RS resources and providers. In version 0.1
+plain Spring mechanisms were necessary such as the <code>Autowired</code> annotation whereas in version 0.2 other beans are
+auto-injected by name similar to Grails controllers, for example.
+
+                    </div>
+                </td>
+                <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                </div>
+            </div>
+        </td>
+            </tr>
+        </table>
+
+        <div id="footer">
+            
+            
+        </div>
+
+
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+    </body>
+</html>

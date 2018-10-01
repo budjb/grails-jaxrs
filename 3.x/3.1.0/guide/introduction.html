@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>1 Introduction 3.1.0</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
+    <script type="text/javascript">
+function addJsClass() {
+    var classes = document.body.className.split(" ");
+    classes.push("js");
+    document.body.className = classes.join(" ");
+}
+    </script>
+</head>
+
+<body class="body" onload="addJsClass();">
+<div id="navigation">
+    <div class="navTitle">
+        
+        JAX-RS Project
+    </div>
+    <div class="navLinks">
+        <ul>
+            <li>
+                <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                    <a href="../guide/index.html" class="button">Table of contents</a>
+
+                    <div id="nav-summary-childs" style="display:none;">
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/introduction.html"><strong>1</strong><span>Introduction</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/quickstart.html"><strong>2</strong><span>Quick Start</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/installing.html"><strong>3</strong><span>Installing</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/resources.html"><strong>4</strong><span>Resources</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/providers.html"><strong>5</strong><span>Entity Providers</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/configuration.html"><strong>6</strong><span>Configuration</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/swagger.html"><strong>7</strong><span>Swagger Integration</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/testing.html"><strong>8</strong><span>Integration Testing</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/advanced.html"><strong>9</strong><span>Advanced Features</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/acknowledgements.html"><strong>10</strong><span>Acknowledgements</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/changelog.html"><strong>11</strong><span>Changelog</span></a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </li>
+            <li class="separator selected">
+                <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<table id="colset" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td id="col1">
+            <div id="main" class="corner-all">
+
+                
+
+                <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                
+                    <div class="toc-item next-right"><a href="../guide/quickstart.html"><strong>2</strong><span>Quick Start</span> >></a></div>
+                
+
+
+                <div class="project">
+                    <h1>1 Introduction</h1>
+
+                    <p><strong>Version:</strong> 3.1.0</p>
+                </div>
+
+                
+
+                
+
+<h1 id="introduction">1 Introduction</h1>
+
+
+The <strong class="bold">jaxrs</strong> project is a set of Grails plugins that supports the development of RESTful web services based on the Java
+API for RESTful Web Services (JSR 311: JAX-RS).<p class="paragraph"/>It is targeted at developers who want to structure the web service layer of an application in a JSR 311 compatible way
+but still want to continue to use Grails' powerful features such as GORM, automated XML and JSON marshalling, Grails
+services, Grails filters and so on. This plugin is an alternative to Grails' built-in mechanism for implementing RESTful
+web services.<p class="paragraph"/><h3>Features</h3>
+<ul class="star">
+<li>Makes the JSR 311 (JAX-RS) available to Grails applications for developing RESTful web services.</li>
+<li>New Grails artefact types, <a href="../guide/single.html#resources" class="guide">Resource</a> and <a href="../guide/single.html#providers" class="guide">Provider</a>, for JAX-RS classes.</li>
+<ul class="star">
+<li>JAX-RS Resource classes under <code>grails-app/resources</code> are auto-detected and can be modified at runtime.</li>
+<li>JAX-RS Provider classes under <code>grails-app/providers</code> are auto-detected and can be modified at runtime.</li>
+</ul>
+<li>Extended Grails command line interface</li>
+<ul class="star">
+<li>Create new resources and unit test templates via <code>grails create-resource &#60;resource name&#62;</code>.</li>
+<li>Generate ready-to-use resources from domain objects via <code>grails generate-resources &#60;domain class name&#62;</code>.</li>
+</ul>
+<li><a href="../guide/single.html#scaffolding" class="guide">Scaffolding</a></li>
+<ul class="star">
+<li>Generate RESTful service interfaces for Grails domain objects.</li>
+<li>Content negotiation support for XML and JSON representations.</li>
+</ul>
+<li>Ability to use any Grails feature within JAX-RS resources and providers such as:</li>
+<ul class="star">
+<li><a href="http://grails.github.io/grails-doc/latest/guide/GORM.html" target="blank">GORM</a> can be used&#10;     <a href="../guide/single.html#gorm" class="guide">for interacting with persistent domain objects</a>.</li>
+<li>Grails filters for intercepting requests to JAX-RS resources. ( <em class="italic">Deprecated</em> )</li>
+<li>Grails <a href="http://grails.github.io/grails-doc/latest/guide/services.html" target="blank">services</a> which can be&#10;     <a href="../guide/single.html#injection" class="guide">auto-injected by name</a>.</li>
+</ul>
+<li>Entity providers</li>
+<ul class="star">
+<li>Domain object providers that convert between Grails domain objects and XML or JSON representations.</li>
+<li>Support classes for developing custom entity providers.</li>
+<li>Support for content negotiation based on the <code>Accept</code> request header.</li>
+</ul>
+<li>Easy <a href="../guide/single.html#testing" class="guide">integration testing</a> of JAX-RS resources and providers.</li>
+<li>Plugin users may choose between Jersey and Restlet as JAX-RS implementations by means of configuration.</li>
+<li><strong class="bold">jaxrs</strong> applications can be <a href="../guide/single.html#google" class="guide">deployed to Google App Engine</a> (GAE).</li>
+</ul><p class="paragraph"/>
+
+
+                <div style="clear:both;margin-top:15px;"></div>
+                
+                    <div class="toc-item next-right"><a href="../guide/quickstart.html"><strong>2</strong><span>Quick Start</span> >></a></div>
+                
+                <div style="clear:both"></div>
+            </div>
+        </td>
+        <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div id="footer">
+    
+    
+</div>
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+</body>
+</html>

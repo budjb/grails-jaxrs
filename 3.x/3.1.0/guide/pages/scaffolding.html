@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>9.2 Scaffolding Domains 3.1.0</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
+    <script type="text/javascript">
+function addJsClass() {
+    var classes = document.body.className.split(" ");
+    classes.push("js");
+    document.body.className = classes.join(" ");
+}
+    </script>
+</head>
+
+<body class="body" onload="addJsClass();">
+<div id="navigation">
+    <div class="navTitle">
+        
+        JAX-RS Project
+    </div>
+    <div class="navLinks">
+        <ul>
+            <li>
+                <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                    <a href="../../guide/index.html" class="button">Table of contents</a>
+
+                    <div id="nav-summary-childs" style="display:none;">
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/introduction.html"><strong>1</strong><span>Introduction</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/quickstart.html"><strong>2</strong><span>Quick Start</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/installing.html"><strong>3</strong><span>Installing</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/resources.html"><strong>4</strong><span>Resources</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/providers.html"><strong>5</strong><span>Entity Providers</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/configuration.html"><strong>6</strong><span>Configuration</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/swagger.html"><strong>7</strong><span>Swagger Integration</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/testing.html"><strong>8</strong><span>Integration Testing</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/advanced.html"><strong>9</strong><span>Advanced Features</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/acknowledgements.html"><strong>10</strong><span>Acknowledgements</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/changelog.html"><strong>11</strong><span>Changelog</span></a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </li>
+            <li class="separator selected">
+                <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<table id="colset" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td id="col1">
+            <div id="main" class="corner-all">
+
+                
+                    <div class="toc-item prev-left"><a href="../../guide/testing.html">&lt;&lt; <strong>8</strong><span>Integration Testing</span></a></div>
+                
+
+                <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                
+                    <div class="toc-item next-right"><a href="../../guide/acknowledgements.html"><strong>10</strong><span>Acknowledgements</span> >></a></div>
+                
+
+
+                <div class="project">
+                    <h1>9.2 Scaffolding Domains</h1>
+
+                    <p><strong>Version:</strong> 3.1.0</p>
+                </div>
+
+                
+
+                
+
+<h2 id="scaffolding">9.2 Scaffolding Domains</h2>
+
+
+The <strong class="bold">jaxrs</strong> plugin also supports scaffolding. It allows you to generate a RESTful service interface for one or more
+domain classes based on JAX-RS resource classes. Supported representation formats are XML and JSON. The following
+sections walk through a simple example.<p class="paragraph"/><h3>Create a domain class</h3><p class="paragraph"/>To create a <code>Person</code> domain class go to the project's root directory and enter:<p class="paragraph"/><div class="code"><pre>grails create&#45;domain&#45;class person</pre></div><p class="paragraph"/>Open the generated <code>Person.groovy</code> file (under <code>grails-app/domain</code>) and add two properties, <code>firstName</code> and <code>lastName</code>.<p class="paragraph"/><div class="code"><pre><span class="java&#45;keyword">package</span> hello<p class="paragraph"/>class Person &#123;<p class="paragraph"/>    <span class="java&#45;keyword">static</span> constraints = &#123;
+    &#125;<p class="paragraph"/>    <span class="java&#45;object">String</span> firstName<p class="paragraph"/>    <span class="java&#45;object">String</span> lastName<p class="paragraph"/>&#125;</pre></div><p class="paragraph"/><h3>Generate the REST API</h3><p class="paragraph"/>To generate JAX-RS resources that implement the RESTful service interface for that domain class enter:<p class="paragraph"/><div class="code"><pre>grails generate&#45;resources hello.Person</pre></div><p class="paragraph"/>This will generate two resource classes, <code>PersonCollectionResource.groovy</code> and <code>PersonResource.groovy</code>
+(in the <code>hello</code> package) that support HTTP POST, GET, PUT and DELETE operations for creating, reading, updating and
+deleting <code>Person</code> objects, respectively. <code>PersonCollectionResource.groovy</code> is related to <code>Person</code> lists,
+<code>PersonResource.groovy</code> is related to individual <code>Person</code> instances. Let's take a look at how to use the generated
+RESTful service interface.<p class="paragraph"/><h3>Use the REST API</h3><p class="paragraph"/>Start the hello application with:<p class="paragraph"/><div class="code"><pre>grails run&#45;app</pre></div><p class="paragraph"/>New person objects can be created by POSTing to <code>http://localhost:8080/api/person</code>. The following request POSTs an XML
+representation of a person object.<p class="paragraph"/><div class="code"><pre>POST /api/person HTTP/1.1
+Content&#45;Type: application/xml
+Accept: application/xml
+Host: localhost:8080
+Content&#45;Length: 82<p class="paragraph"/>&#60;person&#62;
+    &#60;firstName&#62;Sam&#60;/firstName&#62;
+    &#60;lastName&#62;Hill&#60;/lastName&#62;
+&#60;/person&#62;</pre></div><p class="paragraph"/>The Content-Type header must be set either to <code>application/xml</code>. After sending the request, the server creates a new
+person object in the database and returns an XML representation of it.<p class="paragraph"/><div class="code"><pre>HTTP/1.1 201 Created
+Content&#45;Type: application/xml
+Location: http://localhost:8080/api/person/1
+Transfer&#45;Encoding: chunked
+Server: Jetty(6.1.14)<p class="paragraph"/>&#60;?xml version=<span class="java&#45;quote">"1.0"</span> encoding=<span class="java&#45;quote">"UTF&#45;8"</span>?&#62;
+&#60;person id=<span class="java&#45;quote">"1"</span>&#62;
+    &#60;firstName&#62;Sam&#60;/firstName&#62;
+    &#60;lastName&#62;Hill&#60;/lastName&#62;
+&#60;/person&#62;</pre></div><p class="paragraph"/>The client explicitly requested an XML representation via the <code>Accept</code> request header. Note that the returned
+representation differs from the submitted representation by an <code>id</code> attribute in the <code>&#60;person&#62;</code> element. This <code>id</code> is
+also contained in the <code>Location</code> response header, the URL of the created resource. The response code is <code>201 (CREATED)</code>.
+Let's create another person object using a JSON representation. Here's the request:<p class="paragraph"/><div class="code"><pre>POST /api/person HTTP/1.1
+Content&#45;Type: application/json
+Accept: application/json
+Host: localhost:8080
+Content&#45;Length: 58<p class="paragraph"/>&#123;<span class="java&#45;quote">"class"</span>:<span class="java&#45;quote">"Person"</span>,<span class="java&#45;quote">"firstName"</span>:<span class="java&#45;quote">"Fabien"</span>,<span class="java&#45;quote">"lastName"</span>:<span class="java&#45;quote">"Barel"</span>&#125;</pre></div><p class="paragraph"/>The response also contains a JSON representation of the created person (see <code>Accept</code> request header). The <code>id</code> of the
+created person object is <code>2</code>.<p class="paragraph"/><div class="code"><pre>HTTP/1.1 201 Created
+Content&#45;Type: application/json
+Location: http://localhost:8080/api/person/2
+Transfer&#45;Encoding: chunked
+Server: Jetty(6.1.14)<p class="paragraph"/>&#123;<span class="java&#45;quote">"class"</span>:<span class="java&#45;quote">"Person"</span>,<span class="java&#45;quote">"id"</span>:<span class="java&#45;quote">"2"</span>,<span class="java&#45;quote">"firstName"</span>:<span class="java&#45;quote">"Fabien"</span>,<span class="java&#45;quote">"lastName"</span>:<span class="java&#45;quote">"Barel"</span>&#125;</pre></div><p class="paragraph"/>Content negotiation via <code>Content-Type</code> and <code>Accept</code> headers works for other HTTP methods as well. To GET a list of
+created persons, open a browser (Firefox in our example) and enter the URL <code>http://localhost:8080/api/person</code>.
+This returns an XML representation of the list of persons stored in the database.<p class="paragraph"/><div class="code"><pre>&#60;list&#62;
+    &#60;person id=<span class="java&#45;quote">"1"</span>&#62;
+        &#60;firstName&#62;Sam&#60;/firstName&#62;
+        &#60;lastName&#62;Hill&#60;/lastName&#62;
+    &#60;/person&#62;
+    &#60;person id=<span class="java&#45;quote">"2"</span>&#62;
+        &#60;firstName&#62;Fabien&#62;&#60;/firstName&#62;
+        &#60;lastName&#62;Barel&#60;/lastName&#62;
+    &#60;/person&#62;
+&#60;/list&#62;</pre></div><p class="paragraph"/>An XML representation is returned because Firefox sets an <code>Accept=text/html,application/xhtml+xml,application/xml;q=0.9,<strong class="bold">/</strong>;q=0.8</code>
+request header. To get the representation of a single person, specify the <code>id</code> in the URL. For example, to get the
+person with <code>id</code> <code>1</code> use <code>http://localhost:8080/api/person/1</code><p class="paragraph"/><div class="code"><pre>&#60;person id=<span class="java&#45;quote">"1"</span>&#62;
+    &#60;firstName&#62;Sam&#60;/firstName&#62;
+    &#60;lastName&#62;Hill&#60;/lastName&#62;
+&#60;/person&#62;</pre></div><p class="paragraph"/>If you try to get a person that doesn't exist, an error message (with a status code <code>404</code>) is returned.<p class="paragraph"/><div class="code"><pre>&#60;error&#62;Person with id 3 not found&#60;/error&#62;</pre></div><p class="paragraph"/>In the next step we update the first name of person <code>1</code> by PUTting a new representation to
+<code>http://localhost:8080/api/person/1</code>.<p class="paragraph"/><div class="code"><pre>PUT /api/person/1 HTTP/1.1
+Content&#45;Type: application/xml
+Accept: application/xml
+Host: localhost:8080
+Content&#45;Length: 85<p class="paragraph"/>&#60;person&#62;
+    &#60;firstName&#62;Samuel&#60;/firstName&#62;
+    &#60;lastName&#62;Hill&#60;/lastName&#62;
+&#60;/person&#62;</pre></div><p class="paragraph"/>The response is a new representation of the updated person.<p class="paragraph"/><div class="code"><pre>HTTP/1.1 200 OK
+Content&#45;Type: application/xml
+Transfer&#45;Encoding: chunked
+Server: Jetty(6.1.14)<p class="paragraph"/>&#60;?xml version=<span class="java&#45;quote">"1.0"</span> encoding=<span class="java&#45;quote">"UTF&#45;8"</span>?&#62;
+&#60;person id=<span class="java&#45;quote">"1"</span>&#62;
+    &#60;firstName&#62;Samuel&#60;/firstName&#62;
+    &#60;lastName&#62;Hill&#60;/lastName&#62;
+&#60;/person&#62;</pre></div><p class="paragraph"/>GETting the person list again shows the update of person <code>1</code>.<p class="paragraph"/><div class="code"><pre>&#60;list&#62;
+    &#60;person id=<span class="java&#45;quote">"1"</span>&#62;
+        &#60;firstName&#62;Samuel&#60;/firstName&#62;
+        &#60;lastName&#62;Hill&#60;/lastName&#62;
+    &#60;/person&#62;
+    &#60;person id=<span class="java&#45;quote">"2"</span>&#62;
+        &#60;firstName&#62;Fabien&#62;&#60;/firstName&#62;
+        &#60;lastName&#62;Barel&#60;/lastName&#62;
+    &#60;/person&#62;
+&#60;/list&#62;</pre></div><p class="paragraph"/>Finally, we delete person <code>1</code> by sending a DELETE request to <code>http://localhost:8080/api/person/1</code>.<p class="paragraph"/><div class="code"><pre>DELETE /api/person/1 HTTP/1.1
+Accept: application/xml
+Host: localhost:8080</pre></div><p class="paragraph"/>GETting the person lists again shows that person 1 has actually been deleted.<p class="paragraph"/><div class="code"><pre>&#60;list&#62;
+    &#60;person id=<span class="java&#45;quote">"2"</span>&#62;
+        &#60;firstName&#62;Fabien&#62;&#60;/firstName&#62;
+        &#60;lastName&#62;Barel&#60;/lastName&#62;
+    &#60;/person&#62;
+&#60;/list&#62;</pre></div>
+
+
+                <div style="clear:both;margin-top:15px;"></div>
+                
+                    <div class="toc-item prev-left"><a href="../../guide/testing.html">&lt;&lt; <strong>8</strong><span>Integration Testing</span></a></div>
+                
+                    <div class="toc-item next-right"><a href="../../guide/acknowledgements.html"><strong>10</strong><span>Acknowledgements</span> >></a></div>
+                
+                <div style="clear:both"></div>
+            </div>
+        </td>
+        <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div id="footer">
+    
+    
+</div>
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>7 Swagger Integration 3.1.0</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
+    <script type="text/javascript">
+function addJsClass() {
+    var classes = document.body.className.split(" ");
+    classes.push("js");
+    document.body.className = classes.join(" ");
+}
+    </script>
+</head>
+
+<body class="body" onload="addJsClass();">
+<div id="navigation">
+    <div class="navTitle">
+        
+        JAX-RS Project
+    </div>
+    <div class="navLinks">
+        <ul>
+            <li>
+                <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                    <a href="../guide/index.html" class="button">Table of contents</a>
+
+                    <div id="nav-summary-childs" style="display:none;">
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/introduction.html"><strong>1</strong><span>Introduction</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/quickstart.html"><strong>2</strong><span>Quick Start</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/installing.html"><strong>3</strong><span>Installing</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/resources.html"><strong>4</strong><span>Resources</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/providers.html"><strong>5</strong><span>Entity Providers</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/configuration.html"><strong>6</strong><span>Configuration</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/swagger.html"><strong>7</strong><span>Swagger Integration</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/testing.html"><strong>8</strong><span>Integration Testing</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/advanced.html"><strong>9</strong><span>Advanced Features</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/acknowledgements.html"><strong>10</strong><span>Acknowledgements</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/changelog.html"><strong>11</strong><span>Changelog</span></a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </li>
+            <li class="separator selected">
+                <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<table id="colset" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td id="col1">
+            <div id="main" class="corner-all">
+
+                
+                    <div class="toc-item prev-left"><a href="../guide/configuration.html">&lt;&lt; <strong>6</strong><span>Configuration</span></a></div>
+                
+
+                <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                
+                    <div class="toc-item next-right"><a href="../guide/testing.html"><strong>8</strong><span>Integration Testing</span> >></a></div>
+                
+
+
+                <div class="project">
+                    <h1>7 Swagger Integration</h1>
+
+                    <p><strong>Version:</strong> 3.1.0</p>
+                </div>
+
+                
+
+                
+
+<h1 id="swagger">7 Swagger Integration</h1>
+
+
+With the <strong class="bold">jersey1</strong> implementation of the JAX-RS plugin, <strong class="bold">Swagger 2.0</strong> support
+is built-in, although it is disabled by default.<p class="paragraph"/>When Swagger is enabled, the <code>/swagger.json</code> endpoint is exposed containing the
+details about the application's API services, assuming the resources are
+annotated with the proper
+<a href="https://github.com/swagger-api/swagger-core/wiki/Annotations-1.5.X" target="blank">Swagger annotations</a>.<p class="paragraph"/><h3>Configuration</h3><p class="paragraph"/>All of the <strong class="bold">Swagger</strong> configuration options are set under the path
+<code>org.grails.jaxrs.swagger</code>. The following options are available.<p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Configuration Property</strong></th><th><strong class="bold">Required</strong></th><th><strong class="bold">Description</strong></th><th><strong class="bold">Type</strong></th><th><strong class="bold">Default</strong></th></tr><tr class="table-odd"><td><code>enabled</code></td><td><img border="0" class="center" src="../img//bullet_red.png"></img></td><td>If true, <code>/swagger.json</code> will be exposed with details regarding the API service.</td><td><code>Boolean</code></td><td><code>false</code></td></tr><tr class="table-even"><td><code>beanConfigClassName</code></td><td>&#160;</td><td>The fully qualified class name of a custom instance of <code>BeanConfig</code> used to provide information about the API service. This is useful when applications need to provide additional information, such as security requirements.</td><td><code>String</code></td><td>&#160;</td></tr><tr class="table-odd"><td><code>resourcePackage</code></td><td><img border="0" class="center" src="../img//bullet_red.png"></img></td><td>The package that swagger should scan for JAX-RS resources. Multiple packages may be provided as a comma-separated list.</td><td><code>String</code></td><td>&#160;</td></tr><tr class="table-even"><td><code>version</code></td><td>&#160;</td><td>The API version number.</td><td><code>String</code></td><td><code>1</code></td></tr><tr class="table-odd"><td><code>title</code></td><td>&#160;</td><td>The title of the API service. If this is not set, the application name is used.</td><td><code>String</code></td><td>Application name.</td></tr><tr class="table-even"><td><code>description</code></td><td>&#160;</td><td>The description of the API service.</td><td><code>String</code></td><td>&#160;</td></tr><tr class="table-odd"><td><code>contact</code></td><td>&#160;</td><td>Contact information.</td><td><code>String</code></td><td>&#160;</td></tr><tr class="table-even"><td><code>license</code></td><td>&#160;</td><td>License name.</td><td><code>String</code></td><td>&#160;</td></tr><tr class="table-odd"><td><code>licenseUrl</code></td><td>&#160;</td><td>URL to information about the license.</td><td><code>String</code></td><td>&#160;</td></tr><tr class="table-even"><td><code>scan</code></td><td>&#160;</td><td>Whether Swagger should scan for resources.</td><td><code>Boolean</code></td><td><code>true</code></td></tr><tr class="table-odd"><td><code>baseUrl</code></td><td>&#160;</td><td>The base URL to the API service. This is useful when the application lives behind a load balancer.</td><td><code>String</code></td><td>The application's discovered base URL.</td></tr></table><p class="paragraph"/><h3>Swagger UI</h3><p class="paragraph"/>When the <code>jaxrs-swagger-ui</code> plugin is included in an application, the <strong class="bold">Swagger</strong>
+UI is exposed with the path <code>/showRestApi</code>. The UI has been modified only in
+that it is hardcoded to query the application itself for the <code>swagger.json</code>
+information.
+
+
+
+                <div style="clear:both;margin-top:15px;"></div>
+                
+                    <div class="toc-item prev-left"><a href="../guide/configuration.html">&lt;&lt; <strong>6</strong><span>Configuration</span></a></div>
+                
+                    <div class="toc-item next-right"><a href="../guide/testing.html"><strong>8</strong><span>Integration Testing</span> >></a></div>
+                
+                <div style="clear:both"></div>
+            </div>
+        </td>
+        <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div id="footer">
+    
+    
+</div>
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+</body>
+</html>

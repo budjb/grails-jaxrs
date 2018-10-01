@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>11.2 Grails 2.x 3.1.0</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
+    <script type="text/javascript">
+function addJsClass() {
+    var classes = document.body.className.split(" ");
+    classes.push("js");
+    document.body.className = classes.join(" ");
+}
+    </script>
+</head>
+
+<body class="body" onload="addJsClass();">
+<div id="navigation">
+    <div class="navTitle">
+        
+        JAX-RS Project
+    </div>
+    <div class="navLinks">
+        <ul>
+            <li>
+                <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                    <a href="../../guide/index.html" class="button">Table of contents</a>
+
+                    <div id="nav-summary-childs" style="display:none;">
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/introduction.html"><strong>1</strong><span>Introduction</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/quickstart.html"><strong>2</strong><span>Quick Start</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/installing.html"><strong>3</strong><span>Installing</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/resources.html"><strong>4</strong><span>Resources</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/providers.html"><strong>5</strong><span>Entity Providers</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/configuration.html"><strong>6</strong><span>Configuration</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/swagger.html"><strong>7</strong><span>Swagger Integration</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/testing.html"><strong>8</strong><span>Integration Testing</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/advanced.html"><strong>9</strong><span>Advanced Features</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/acknowledgements.html"><strong>10</strong><span>Acknowledgements</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/changelog.html"><strong>11</strong><span>Changelog</span></a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </li>
+            <li class="separator selected">
+                <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<table id="colset" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td id="col1">
+            <div id="main" class="corner-all">
+
+                
+                    <div class="toc-item prev-left"><a href="../../guide/acknowledgements.html">&lt;&lt; <strong>10</strong><span>Acknowledgements</span></a></div>
+                
+
+                <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                
+
+
+                <div class="project">
+                    <h1>11.2 Grails 2.x</h1>
+
+                    <p><strong>Version:</strong> 3.1.0</p>
+                </div>
+
+                
+
+                
+
+<h2 id="v2changelog">11.2 Grails 2.x</h2>
+
+
+<h3>Version 0.11</h3>
+<blockquote class="warning">
+Version 0.11 of the plugin is a release of the Grails 2.4.x compatibility branch and is probably not compatible with any
+previous versions.
+</blockquote>
+<ul class="star">
+<li>Grails 2.4.x compatibility modifications.</li>
+</ul><p class="paragraph"/><h3>Version 0.10</h3>
+<blockquote class="warning">
+Version 0.10 of the plugin is a release of the Grails 2.3.x compatibility branch and is probably not compatible with any
+previous versions.
+</blockquote>
+<ul class="star">
+<li>Re-introduced Spock testing infrastructure using Spock bundled with Grails 2.3.x</li>
+<li>Includes all fixes and features added to the release of version 0.9.</li>
+<li>Grails 2.3.x compatibility modifications.</li>
+<li>Upgrade to Restlet 2.1.4.</li>
+</ul><p class="paragraph"/><h3>Version 0.9</h3>
+<blockquote class="note">
+To improve the compatibility of this plugin across Groovy and Grails versions, the Spock test infrastructure has been
+removed and is now available through the new <a href="https://github.com/noamt/grails-jaxrs-spock" target="blank">Grails JAXRS-Spock plugin</a>.
+Please review the new plugin's README file for installation instructions.
+</blockquote>
+<ul class="star">
+<li>Added exclusions for un-required dependencies.</li>
+<li>Modified the order of the servlet configuration; the load-on-startup field is now specified last.</li>
+<li>Add the ability to specify query parameters in the test request path.</li>
+<li>Take Encoding into consideration when decoding the input stream.</li>
+<li>Remove copy-pasted MockHttpServletRequest from plugin.</li>
+<li>Allow for multiple resources creation at once.</li>
+<li>Downgraded the Grails version requirement to 2.0.x.</li>
+</ul><p class="paragraph"/><h3>Version 0.8</h3>
+<blockquote class="warning">
+This version enables the plugin to be used by Grails 2.2.x applications but breaks backwards compatibility for versions
+prior to 2.2.x.
+</blockquote><p class="paragraph"/><h3>Version 0.7</h3>
+<ul class="star">
+<li>Enhancement: Added infrastructure to enable Spock integration testing</li>
+<li>Fix: Cannot use <strong class="bold">jaxrs</strong> 0.6 with servlet 2.5 (it needs servlet api 3.0).</li>
+<li>Fix: Removed usages of the deprecated Grails ConfigurationHolder.</li>
+</ul><p class="paragraph"/><h3>Version 0.6</h3>
+<ul class="star">
+<li>Upgrade to Grails 2.0.0</li>
+<li>Upgrade to Jersey 1.8</li>
+<li>Enhancement: Allow applications to configure init parameters for the <code>JerseyServlet</code></li>
+<li>Enhancement: Separate service class used by generated resources</li>
+<li>Enhancement: Transaction boundaries in generated resource code</li>
+<li>Enhancement: Support deep object conversion in domain object providers</li>
+<li>Fix: Support for alphanumeric domain object identifiers</li>
+<li>Fix: POST method doesn't work</li>
+<li>Fix: <code>java.lang.IllegalStateException: getOutputStream() has already been called for this response</code></li>
+</ul><p class="paragraph"/><h3>Version 0.5-m1</h3>
+<ul class="star">
+<li>New integration test framework</li>
+<li>Upgrade to Grails 1.3.7</li>
+<li>Upgrade to Jersey 1.5</li>
+<li>Enhancement: Add support for configuring Jersey with additional provider paths</li>
+<li>Enhancement: Switch to Grails' dependency management mechanism</li>
+<li>Enhancement: <code>JaxrsController</code> moved to package <code>org.grails.jaxrs</code></li>
+<li>Fix: Responses with Content-Type <code>text/html</code> eaten by Grails</li>
+<li>Fix: Service injection into resources doesn't work in integration tests</li>
+</ul><p class="paragraph"/><h3>Version 0.4</h3>
+<ul class="star">
+<li>Automated generation of WADL documents (with some known limitations)</li>
+<li>Upgrade to Grails 1.3.1</li>
+<li>Upgrade to Jersey 1.2</li>
+<li>Upgrade to Restlet 2.0-RC3</li>
+<li>Fix: Object ids in XML or JSON requests are not set on the domain object.</li>
+<li>Fix: Unmarshalling from JSON (and XML) to nested domain objects doesn't work properly</li>
+</ul><p class="paragraph"/><blockquote class="note">
+There's a bug (issue 971) in Restlet 2.0-RC3 that forces implementors of <code>MessageBodyReader</code> and <code>MessageBodyWriter</code> to
+directly implement these interfaces. Extending a class that implements these interfaces doesn't work. Restlet will
+ignore the provider in this case.
+</blockquote><p class="paragraph"/><h3>Version 0.3</h3>
+<ul class="star">
+<li>Domain object providers</li>
+<ul class="star">
+<li>Convert between Grails domain objects and XML or JSON representations</li>
+<li>Allow usage of Grails domain classes in resource method signatures</li>
+<li>Support for content negotiation using the Accept request header</li>
+<li>Can be disabled by means of configuration</li>
+</ul>
+<li>Custom entity provider support</li>
+<ul class="star">
+<li>Base classes for custom domain object providers</li>
+<ul class="star">
+<li><code>org.grails.jaxrs.support.DomainObjectReaderSupport</code></li>
+<li><code>org.grails.jaxrs.support.DomainObjectWriterSupport</code></li>
+</ul>
+<li>Base classes for more general entity providers (improved)</li>
+<ul class="star">
+<li><code>org.grails.jaxrs.support.MessageBodyReaderSupport</code></li>
+<li><code>org.grails.jaxrs.support.MessageBodyWriterSupport</code></li>
+</ul>
+</ul>
+<li>Scaffolding enhancements</li>
+<ul class="star">
+<li>XML and JSON representations</li>
+<li>Content negotiation support</li>
+</ul>
+<li>Auto-detection of JAX-RS resource classes better aligned with the JAX-RS specification (incl. support for annotation&#10;  inheritance)</li>
+<li>Auto-detection of JAX-RS provider classes better aligned with the JAX-RS specification</li>
+<li>Default URL mapping for <code>JaxrsController</code> changed</li>
+<li>Upgrade to Grails 1.1.2</li>
+<li>Upgrade to Jersey 1.1.4.1</li>
+<li>Upgrade to Restlet 2.0-M6</li>
+</ul><p class="paragraph"/><h3>Version 0.2</h3>
+In version 0.2 the way how JAX-RS resources and providers are auto-detected has changed. In version 0.1 plain Spring
+mechanisms were used (<code>&#60;context:component-scan /&#62;</code>, <code>Component</code> annotation, etc.) whereas in version 0.2 the plugin
+follows Grails conventions regarding how to detect and manage resources. Now, there's no need to provide a custom Spring
+application context. The <strong class="bold">jaxrs</strong> plugin is now making these changes behind the scenes.<p class="paragraph"/>Similar changes have been introduced for injection of other beans into JAX-RS resources and providers. In version 0.1
+plain Spring mechanisms were necessary such as the <code>Autowired</code> annotation whereas in version 0.2 other beans are
+auto-injected by name similar to Grails controllers, for example.
+
+
+                <div style="clear:both;margin-top:15px;"></div>
+                
+                    <div class="toc-item prev-left"><a href="../../guide/acknowledgements.html">&lt;&lt; <strong>10</strong><span>Acknowledgements</span></a></div>
+                
+                <div style="clear:both"></div>
+            </div>
+        </td>
+        <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div id="footer">
+    
+    
+</div>
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+</body>
+</html>

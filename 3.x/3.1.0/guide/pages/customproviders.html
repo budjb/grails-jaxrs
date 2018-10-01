@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>5.4 Custom Providers 3.1.0</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
+    <script type="text/javascript">
+function addJsClass() {
+    var classes = document.body.className.split(" ");
+    classes.push("js");
+    document.body.className = classes.join(" ");
+}
+    </script>
+</head>
+
+<body class="body" onload="addJsClass();">
+<div id="navigation">
+    <div class="navTitle">
+        
+        JAX-RS Project
+    </div>
+    <div class="navLinks">
+        <ul>
+            <li>
+                <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                    <a href="../../guide/index.html" class="button">Table of contents</a>
+
+                    <div id="nav-summary-childs" style="display:none;">
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/introduction.html"><strong>1</strong><span>Introduction</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/quickstart.html"><strong>2</strong><span>Quick Start</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/installing.html"><strong>3</strong><span>Installing</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/resources.html"><strong>4</strong><span>Resources</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/providers.html"><strong>5</strong><span>Entity Providers</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/configuration.html"><strong>6</strong><span>Configuration</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/swagger.html"><strong>7</strong><span>Swagger Integration</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/testing.html"><strong>8</strong><span>Integration Testing</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/advanced.html"><strong>9</strong><span>Advanced Features</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/acknowledgements.html"><strong>10</strong><span>Acknowledgements</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/changelog.html"><strong>11</strong><span>Changelog</span></a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </li>
+            <li class="separator selected">
+                <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<table id="colset" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td id="col1">
+            <div id="main" class="corner-all">
+
+                
+                    <div class="toc-item prev-left"><a href="../../guide/resources.html">&lt;&lt; <strong>4</strong><span>Resources</span></a></div>
+                
+
+                <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                
+                    <div class="toc-item next-right"><a href="../../guide/configuration.html"><strong>6</strong><span>Configuration</span> >></a></div>
+                
+
+
+                <div class="project">
+                    <h1>5.4 Custom Providers</h1>
+
+                    <p><strong>Version:</strong> 3.1.0</p>
+                </div>
+
+                
+
+                
+
+<h2 id="customproviders">5.4 Custom Providers</h2>
+
+
+Applications can implement their own entity providers by placing them into the <code>grails-app/providers</code> directory. In
+order to be auto-detected by <strong class="bold">jaxrs</strong> they:
+<ul class="star">
+<li>must be annotated with <code>javax.ws.rs.ext.Provider</code>.</li>
+<li>must have a file name matching <code>*Reader.groovy</code> if the corresponding class implements <code>javax.ws.rs.ext.MessageBodyReader</code>.</li>
+<li>must have a file name matching <code>*Writer.groovy</code> if the corresponding class implements <code>javax.ws.rs.ext.MessageBodyWriter</code>.</li>
+</ul><p class="paragraph"/><h3>Custom Domain Object Providers</h3><p class="paragraph"/>For customizing the conversion between Grails domain objects and their XML or JSON representations, one has to disable
+the default domain object providers first. To disable the default domain object reader and writer, the following entries
+must be added to application configuration:
+<ul class="star">
+<li><code>org.grails.jaxrs.doreader.disable = true</code></li>
+<li><code>org.grails.jaxrs.dowriter.disable = true</code></li>
+</ul><p class="paragraph"/>In the following example a custom domain object writer is implemented, therefore, only the default domain object writer
+needs to be disabled. A custom XML creation should be done for the <code>Person</code> domain class (see
+<a href="../guide/single.html#scaffolding" class="guide">scaffolding example</a>), for all other classes the default XML creation should occur. Here's the custom
+provider.<p class="paragraph"/><div class="code"><pre><span class="java&#45;keyword">package</span> hello<p class="paragraph"/><span class="java&#45;keyword">import</span> javax.ws.rs.Produces
+<span class="java&#45;keyword">import</span> javax.ws.rs.ext.Provider
+<span class="java&#45;keyword">import</span> groovy.xml.MarkupBuilder
+<span class="java&#45;keyword">import</span> org.grails.jaxrs.support.DomainObjectWriterSupport<p class="paragraph"/>@Provider
+@Produces(&#91;'text/xml', 'application/xml', 'text/x&#45;json', 'application/json'&#93;)
+class CustomDomainObjectWriter <span class="java&#45;keyword">extends</span> DomainObjectWriterSupport &#123;
+    <span class="java&#45;keyword">protected</span> <span class="java&#45;object">Object</span> writeToXml(<span class="java&#45;object">Object</span> obj, OutputStream entityStream, <span class="java&#45;object">String</span> charset) &#123;
+        <span class="java&#45;keyword">if</span> (obj <span class="java&#45;keyword">instanceof</span> Person) &#123;
+            def writer = <span class="java&#45;keyword">new</span> OutputStreamWriter(entityStream, charset)
+            def builder = <span class="java&#45;keyword">new</span> MarkupBuilder(writer)
+            builder.person &#123;
+                id(obj.id)
+                fullName(<span class="java&#45;quote">"$&#123;obj.firstName&#125; $&#123;obj.lastName&#125;"</span>)
+            &#125;
+        &#125; <span class="java&#45;keyword">else</span> &#123;
+            <span class="java&#45;keyword">super</span>.writeToXml(obj, entityStream, charset)
+        &#125;
+    &#125;
+&#125;</pre></div><p class="paragraph"/>The custom provider overrides the <code>writeToXml</code> method and generates custom XML using a <code>MarkupBuilder</code>. To test this
+provider, create an application as described in the scaffolding example, create a folder <code>grails-app/provider/hello</code>,
+and place this custom provider there. The plugin will auto-detect the provider. To create a new person object in the
+database, send the following request:<p class="paragraph"/><div class="code"><pre>POST /api/person HTTP/1.1
+Content&#45;Type: application/xml
+Accept: application/xml
+Host: localhost:8080
+Content&#45;Length: 83<p class="paragraph"/>&#60;person&#62;
+    &#60;firstName&#62;Custom&#60;/firstName&#62;
+    &#60;lastName&#62;Tester&#60;/lastName&#62;
+&#60;/person&#62;</pre></div><p class="paragraph"/>The response entity is a custom XML representation created by the custom provider:<p class="paragraph"/><div class="code"><pre>HTTP/1.1 201 Created
+Content&#45;Type: application/xml
+Location: http://localhost:8080/api/person/3
+Transfer&#45;Encoding: chunked
+Server: Jetty(6.1.14)<p class="paragraph"/>&#60;person&#62;
+  &#60;id&#62;3&#60;/id&#62;
+  &#60;fullName&#62;Custom Tester&#60;/fullName&#62;
+&#60;/person&#62;</pre></div><p class="paragraph"/>There are several other protected <code>DomainObjectWriterSupport</code> methods for customizing the domain object marshalling, for
+example <code>writeToJson</code> to create custom JSON representations or <code>isWriteable</code> to narrow the set of domain classes that a
+custom domain object writer accepts. Refer to the the API docs for details.<p class="paragraph"/><h3>Further Entity Provider Support</h3><p class="paragraph"/>For simple use cases, the <strong class="bold">jaxrs</strong> plugin additionally provides the abstract classes:
+<ul class="star">
+<li><code>org.grails.jaxrs.support.MessageBodyReaderSupport&#60;T&#62;</code></li>
+<li><code>org.grails.jaxrs.support.MessageBodyWriterSupport&#60;T&#62;</code></li>
+</ul><p class="paragraph"/>These base classes can also be used for classes other than domain classes. Implementors define the supported Java type
+with a type parameter. For example, the following class is a <code>MessageBodyWriter</code> that supports conversions for a
+<code>Note</code> class.<p class="paragraph"/><div class="code"><pre>@Provider
+@Produces('application/xml')
+class NoteWriter <span class="java&#45;keyword">extends</span> MessageBodyWriterSupport&#60;Note&#62; &#123;
+    void writeTo(Note entity, MultivaluedMap httpHeaders, OutputStream entityStream) &#123;
+        def builder = <span class="java&#45;keyword">new</span> MarkupBuilder(<span class="java&#45;keyword">new</span> OutputStreamWriter(entityStream))
+        builder.note &#123;
+            // create custom XML here &#8230;
+        &#125;
+    &#125;
+&#125;</pre></div><p class="paragraph"/>Similarly, given a POJO named <code>UserDto</code>, the following reader provides object instances from their JSON representation:<p class="paragraph"/><div class="code"><pre>@Provider
+@Consumes(<span class="java&#45;quote">"application/json"</span>)
+class UserDtoReader <span class="java&#45;keyword">extends</span> MessageBodyReaderSupport&#60;UserDto&#62; &#123;
+    @Override
+    <span class="java&#45;keyword">public</span> UserDto readFrom(MultivaluedMap&#60;<span class="java&#45;object">String</span>, <span class="java&#45;object">String</span>&#62; httpHeaders,
+            InputStream entityStream) <span class="java&#45;keyword">throws</span> IOException,
+            WebApplicationException &#123;
+        <span class="java&#45;keyword">return</span> <span class="java&#45;keyword">new</span> JsonSlurper().parse(<span class="java&#45;keyword">new</span> InputStreamReader(entityStream))
+    &#125;
+&#125;</pre></div><p class="paragraph"/>For details about the <code>MessageBodyWriterSupport</code> and <code>MessageBodyReaderSupport</code> classes refer to the API docs.<p class="paragraph"/>Alternatively, you may of course write JAX-RS providers from scratch by using the JAX-RS API directly.
+
+
+
+                <div style="clear:both;margin-top:15px;"></div>
+                
+                    <div class="toc-item prev-left"><a href="../../guide/resources.html">&lt;&lt; <strong>4</strong><span>Resources</span></a></div>
+                
+                    <div class="toc-item next-right"><a href="../../guide/configuration.html"><strong>6</strong><span>Configuration</span> >></a></div>
+                
+                <div style="clear:both"></div>
+            </div>
+        </td>
+        <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div id="footer">
+    
+    
+</div>
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+</body>
+</html>

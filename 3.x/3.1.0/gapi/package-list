@@ -1,0 +1,6 @@
+org.grails.plugins.jaxrs
+org.grails.plugins.jaxrs.artefact
+org.grails.plugins.jaxrs.core
+org.grails.plugins.jaxrs.provider
+org.grails.plugins.jaxrs.response
+org.grails.plugins.jaxrs.servlet

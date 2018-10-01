@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>9.3 Using GORM 3.1.0</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
+    <script type="text/javascript">
+function addJsClass() {
+    var classes = document.body.className.split(" ");
+    classes.push("js");
+    document.body.className = classes.join(" ");
+}
+    </script>
+</head>
+
+<body class="body" onload="addJsClass();">
+<div id="navigation">
+    <div class="navTitle">
+        
+        JAX-RS Project
+    </div>
+    <div class="navLinks">
+        <ul>
+            <li>
+                <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                    <a href="../../guide/index.html" class="button">Table of contents</a>
+
+                    <div id="nav-summary-childs" style="display:none;">
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/introduction.html"><strong>1</strong><span>Introduction</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/quickstart.html"><strong>2</strong><span>Quick Start</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/installing.html"><strong>3</strong><span>Installing</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/resources.html"><strong>4</strong><span>Resources</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/providers.html"><strong>5</strong><span>Entity Providers</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/configuration.html"><strong>6</strong><span>Configuration</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/swagger.html"><strong>7</strong><span>Swagger Integration</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/testing.html"><strong>8</strong><span>Integration Testing</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/advanced.html"><strong>9</strong><span>Advanced Features</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/acknowledgements.html"><strong>10</strong><span>Acknowledgements</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/changelog.html"><strong>11</strong><span>Changelog</span></a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </li>
+            <li class="separator selected">
+                <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<table id="colset" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td id="col1">
+            <div id="main" class="corner-all">
+
+                
+                    <div class="toc-item prev-left"><a href="../../guide/testing.html">&lt;&lt; <strong>8</strong><span>Integration Testing</span></a></div>
+                
+
+                <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                
+                    <div class="toc-item next-right"><a href="../../guide/acknowledgements.html"><strong>10</strong><span>Acknowledgements</span> >></a></div>
+                
+
+
+                <div class="project">
+                    <h1>9.3 Using GORM</h1>
+
+                    <p><strong>Version:</strong> 3.1.0</p>
+                </div>
+
+                
+
+                
+
+<h2 id="gorm">9.3 Using GORM</h2>
+
+
+This section explains what's happening behind the scenes of the scaffolding example and how GORM inside JAX-RS resource
+classes.<p class="paragraph"/><h3>PersonCollectionResource.groovy</h3><p class="paragraph"/>Here's the source code for <code>PersonCollectionResource.groovy</code>.
+<div class="code"><pre><span class="java&#45;keyword">package</span> hello<p class="paragraph"/><span class="java&#45;keyword">import</span> <span class="java&#45;keyword">static</span> org.grails.jaxrs.response.Responses.&#42;<p class="paragraph"/><span class="java&#45;keyword">import</span> javax.ws.rs.Consumes
+<span class="java&#45;keyword">import</span> javax.ws.rs.GET
+<span class="java&#45;keyword">import</span> javax.ws.rs.Produces
+<span class="java&#45;keyword">import</span> javax.ws.rs.Path
+<span class="java&#45;keyword">import</span> javax.ws.rs.PathParam
+<span class="java&#45;keyword">import</span> javax.ws.rs.POST
+<span class="java&#45;keyword">import</span> javax.ws.rs.core.Response<p class="paragraph"/>@Path('/api/person')
+@Consumes(&#91;'application/xml','application/json'&#93;)
+@Produces(&#91;'application/xml','application/json'&#93;)
+class PersonCollectionResource &#123;<p class="paragraph"/>    @POST
+    Response create(Person dto) &#123;
+        created dto.save()
+    &#125;<p class="paragraph"/>    @GET
+    Response readAll() &#123;
+        ok Person.findAll()
+    &#125;<p class="paragraph"/>    @Path('/&#123;id&#125;')
+    PersonResource getResource(@PathParam('id') <span class="java&#45;object">String</span> id) &#123;
+        <span class="java&#45;keyword">new</span> PersonResource(id:id)
+    &#125;
+&#125;</pre></div>
+It is based on JSR 311 classes and annotations and uses static methods from <code>org.grails.jaxrs.response.Responses</code>. This
+is a helper class provided by the plugin that implements a very simple DSL consisting of elements created and ok.
+Supported content types for requests and responses are <code>application/xml</code> and <code>application/json</code>. This is given by the
+class-level <code>Consumes</code> and <code>Produces</code> annotations.<p class="paragraph"/>The <code>PersonCollectionResource</code> class responds to HTTP operations that are related to person lists. The URL of the person
+list is <code>http://localhost:8080/api/person</code> where the <code>/api/person</code> path is defined by the class-level
+<code>Path('/api/person')</code> annotation.
+<ul class="star">
+<li>The <code>create</code> method responds to POST requests by storing a new <code>Person</code> object in the database using GORM. The XML or&#10;  JSON request entity is converted by the plugin to a <code>Person</code> domain object and passed to the method via a dto&#10;  parameter. The conversion is done by a domain object provider. The persisted domain object is passed to the created&#10;  method which creates a response from it using the JAX-RS API (see source code for details). The created method&#10;  constructs a URI for the <code>Location</code> response header from the domain object <code>id</code>. The <code>Person</code> object is set to the&#10;  Response entity.</li>
+<li>The <code>readAll</code> method responds to GET requests and returns a person list. Again we use GORM to get all person objects&#10;  from the database and pass that list as argument to the <code>ok</code> method. This method uses the JAX-RS API to create a&#10;  response (see link source code for details).</li>
+<li>The <code>getResource</code> method creates another JAX-RS resource whenever a request to the URI template&#10;  <code>http://localhost:8080/api/person/{id}</code> is made. The <code>id</code> path parameter in the template is bound to the id parameter&#10;  of the <code>getResource</code> method. The created JAX-RS <code>PersonResource</code> is then used by the JAX-RS runtime to handle the&#10;  request to the person with the given id.</li>
+</ul><p class="paragraph"/><h3>PersonResource.groovy</h3><p class="paragraph"/>Here's the source code for <code>PersonResource.groovy</code>.<p class="paragraph"/><div class="code"><pre><span class="java&#45;keyword">package</span> hello<p class="paragraph"/><span class="java&#45;keyword">import</span> <span class="java&#45;keyword">static</span> org.grails.jaxrs.response.Responses.&#42;<p class="paragraph"/><span class="java&#45;keyword">import</span> javax.ws.rs.Consumes
+<span class="java&#45;keyword">import</span> javax.ws.rs.DELETE
+<span class="java&#45;keyword">import</span> javax.ws.rs.GET
+<span class="java&#45;keyword">import</span> javax.ws.rs.Produces
+<span class="java&#45;keyword">import</span> javax.ws.rs.PUT
+<span class="java&#45;keyword">import</span> javax.ws.rs.core.Response<p class="paragraph"/><span class="java&#45;keyword">import</span> org.grails.jaxrs.provider.DomainObjectNotFoundException<p class="paragraph"/>@Consumes(&#91;'application/xml','application/json'&#93;)
+@Produces(&#91;'application/xml','application/json'&#93;)
+class PersonResource &#123;<p class="paragraph"/>    def id<p class="paragraph"/>    @GET
+    Response read() &#123;
+        def obj = Person.get(id)
+        <span class="java&#45;keyword">if</span> (!obj) &#123;
+            <span class="java&#45;keyword">throw</span> <span class="java&#45;keyword">new</span> DomainObjectNotFoundException(Person.class, id)
+        &#125;
+        ok obj
+    &#125;<p class="paragraph"/>    @PUT
+    Response update(Person dto) &#123;
+        def obj = Person.get(id)
+        <span class="java&#45;keyword">if</span> (!obj) &#123;
+            <span class="java&#45;keyword">throw</span> <span class="java&#45;keyword">new</span> DomainObjectNotFoundException(Person.class, id)
+        &#125;
+        obj.properties = dto.properties
+        ok obj
+    &#125;<p class="paragraph"/>    @DELETE
+    void delete() &#123;
+        def obj = Person.get(id)
+        <span class="java&#45;keyword">if</span> (obj) &#123;
+            obj.delete()
+        &#125;
+    &#125;
+&#125;</pre></div><p class="paragraph"/>The <code>id</code> property is set during construction of the resource and is used for database operations. This class implements
+the methods <code>read</code>, <code>update</code> and <code>delete</code> to handle GET, PUT and DELETE requests, respectively. It also uses GORM for
+database operations and relies on helper methods of <code>org.grails.jaxrs.response.Responses</code> to create responses via the
+JAX-RS API.<p class="paragraph"/>If there's no person with given <code>id</code> in the database, a <code>DomainObjectNotFoundException</code> is thrown. This exception class
+generates a custom 404 response using the JAX-RS API (see source code for details).
+
+
+                <div style="clear:both;margin-top:15px;"></div>
+                
+                    <div class="toc-item prev-left"><a href="../../guide/testing.html">&lt;&lt; <strong>8</strong><span>Integration Testing</span></a></div>
+                
+                    <div class="toc-item next-right"><a href="../../guide/acknowledgements.html"><strong>10</strong><span>Acknowledgements</span> >></a></div>
+                
+                <div style="clear:both"></div>
+            </div>
+        </td>
+        <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div id="footer">
+    
+    
+</div>
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+</body>
+</html>

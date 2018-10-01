@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>9.6 Google App Engine 3.1.0</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
+    <script type="text/javascript">
+function addJsClass() {
+    var classes = document.body.className.split(" ");
+    classes.push("js");
+    document.body.className = classes.join(" ");
+}
+    </script>
+</head>
+
+<body class="body" onload="addJsClass();">
+<div id="navigation">
+    <div class="navTitle">
+        
+        JAX-RS Project
+    </div>
+    <div class="navLinks">
+        <ul>
+            <li>
+                <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                    <a href="../../guide/index.html" class="button">Table of contents</a>
+
+                    <div id="nav-summary-childs" style="display:none;">
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/introduction.html"><strong>1</strong><span>Introduction</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/quickstart.html"><strong>2</strong><span>Quick Start</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/installing.html"><strong>3</strong><span>Installing</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/resources.html"><strong>4</strong><span>Resources</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/providers.html"><strong>5</strong><span>Entity Providers</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/configuration.html"><strong>6</strong><span>Configuration</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/swagger.html"><strong>7</strong><span>Swagger Integration</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/testing.html"><strong>8</strong><span>Integration Testing</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/advanced.html"><strong>9</strong><span>Advanced Features</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/acknowledgements.html"><strong>10</strong><span>Acknowledgements</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../../guide/changelog.html"><strong>11</strong><span>Changelog</span></a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </li>
+            <li class="separator selected">
+                <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<table id="colset" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td id="col1">
+            <div id="main" class="corner-all">
+
+                
+                    <div class="toc-item prev-left"><a href="../../guide/testing.html">&lt;&lt; <strong>8</strong><span>Integration Testing</span></a></div>
+                
+
+                <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                
+                    <div class="toc-item next-right"><a href="../../guide/acknowledgements.html"><strong>10</strong><span>Acknowledgements</span> >></a></div>
+                
+
+
+                <div class="project">
+                    <h1>9.6 Google App Engine</h1>
+
+                    <p><strong>Version:</strong> 3.1.0</p>
+                </div>
+
+                
+
+                
+
+<h2 id="google">9.6 Google App Engine</h2>
+
+
+This section describes how to get the hello world example running on Google App Engine.<p class="paragraph"/><blockquote class="note">
+This section has been untested with Grails 3. If this documentation is out of date, please submit an issue or
+contribute updated documentation in a pull request.
+</blockquote>
+<ul class="star">
+<li>Install the Grails app-engine plugin.</li>
+<li>Create a Grails application and JAX-RS resource as described in the hello world example.</li>
+<li>Be sure to use the <strong class="bold">jaxrs-restlet</strong> implementation plugin.</li>
+<li>Add the following entries to the Grails configuration:</li>
+</ul><p class="paragraph"/><div class="code"><pre>// replace &#60;application&#45;name&#62; with the
+// actual App Engine application name
+google.appengine.application='&#60;application&#45;name&#62;'</pre></div>
+<ul class="star">
+<li>Open a shell at the root directory of the hello world application.</li>
+<li>Set the application version to 1 with:</li>
+</ul><p class="paragraph"/><div class="code"><pre>grails set&#45;version 1</pre></div>
+<ul class="star">
+<li>Run the application locally with <code>grails app-engine run</code>.</li>
+<li>Enter the URL <code>http://localhost:8080/test?name=Tester</code> into your browser and the browser window should display&#10;   <em class="italic">Hello Tester</em> .</li>
+<li>Package the plugin with <code>grails app-engine package</code>.</li>
+<li>Deploy the application with the <code>appcfg</code> command-line tool from your App Engine SDK.</li>
+<ul class="star">
+<li>On Linux, enter:</li>
+</ul></ul><p class="paragraph"/><div class="code"><pre>$APPENGINE_HOME/bin/appcfg.sh update ./target/war</pre></div>
+<ul class="star">
+<ul class="star">
+<li>On Windows, enter:</li>
+</ul></ul><p class="paragraph"/><div class="code"><pre>%APPENGINE_HOME%&#98;in&#97;ppcfg.cmd update .&#116;arget&#119;ar</pre></div>
+<ul class="star">
+<li>When prompted enter email and password to authenticate at Google App Engine.</li>
+<li>Once deployment is done go enter the URL <code>http://&#60;application-name&#62;.appspot.com/test?name=Tester</code> into your browser&#10;  and the browser window should display  <em class="italic">Hello Tester</em> . It may take 10-20 seconds for Google App Engine to initialize&#10;  the Grails application the first time. Subsequent requests are served much faster.</li>
+</ul><p class="paragraph"/><blockquote class="note">
+Using scaffolding together with the gorm-jpa plugin is not supported at the moment. A related feature request has
+already been added to the issue tracker.
+</blockquote>
+
+
+                <div style="clear:both;margin-top:15px;"></div>
+                
+                    <div class="toc-item prev-left"><a href="../../guide/testing.html">&lt;&lt; <strong>8</strong><span>Integration Testing</span></a></div>
+                
+                    <div class="toc-item next-right"><a href="../../guide/acknowledgements.html"><strong>10</strong><span>Acknowledgements</span> >></a></div>
+                
+                <div style="clear:both"></div>
+            </div>
+        </td>
+        <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div id="footer">
+    
+    
+</div>
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+</body>
+</html>

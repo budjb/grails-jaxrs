@@ -1,0 +1,423 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>9 Advanced Features 3.1.0</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
+    <script type="text/javascript">
+function addJsClass() {
+    var classes = document.body.className.split(" ");
+    classes.push("js");
+    document.body.className = classes.join(" ");
+}
+    </script>
+</head>
+
+<body class="body" onload="addJsClass();">
+<div id="navigation">
+    <div class="navTitle">
+        
+        JAX-RS Project
+    </div>
+    <div class="navLinks">
+        <ul>
+            <li>
+                <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                    <a href="../guide/index.html" class="button">Table of contents</a>
+
+                    <div id="nav-summary-childs" style="display:none;">
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/introduction.html"><strong>1</strong><span>Introduction</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/quickstart.html"><strong>2</strong><span>Quick Start</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/installing.html"><strong>3</strong><span>Installing</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/resources.html"><strong>4</strong><span>Resources</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/providers.html"><strong>5</strong><span>Entity Providers</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/configuration.html"><strong>6</strong><span>Configuration</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/swagger.html"><strong>7</strong><span>Swagger Integration</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/testing.html"><strong>8</strong><span>Integration Testing</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/advanced.html"><strong>9</strong><span>Advanced Features</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/acknowledgements.html"><strong>10</strong><span>Acknowledgements</span></a>
+                        </div>
+                        
+                        <div class="toc-item" style="margin-left:0"><a href="../guide/changelog.html"><strong>11</strong><span>Changelog</span></a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </li>
+            <li class="separator selected">
+                <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<table id="colset" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td id="col1">
+            <div id="main" class="corner-all">
+
+                
+                    <div class="toc-item prev-left"><a href="../guide/testing.html">&lt;&lt; <strong>8</strong><span>Integration Testing</span></a></div>
+                
+
+                <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                
+                    <div class="toc-item next-right"><a href="../guide/acknowledgements.html"><strong>10</strong><span>Acknowledgements</span> >></a></div>
+                
+
+
+                <div class="project">
+                    <h1>9 Advanced Features</h1>
+
+                    <p><strong>Version:</strong> 3.1.0</p>
+                </div>
+
+                
+                <div id="table-of-content">
+                    <h2>Table of Contents</h2>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#wadl"><strong>9.1</strong><span>Generate WADL</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#scaffolding"><strong>9.2</strong><span>Scaffolding Domains</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#gorm"><strong>9.3</strong><span>Using GORM</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#filters"><strong>9.4</strong><span>Applying Filters</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#injection"><strong>9.5</strong><span>Service Injection</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#google"><strong>9.6</strong><span>Google App Engine</span></a>
+                    </div>
+                    
+                </div>
+                
+
+                
+
+<h1 id="advanced">9 Advanced Features</h1>
+
+
+
+
+
+<h2 id="wadl">9.1 Generate WADL</h2>
+
+
+<blockquote class="note">
+Automatically generated WADL functionality is only available in version 0.4 of the <strong class="bold">jaxrs</strong> plugin or higher, and
+requires the Jersey implementation.
+</blockquote><p class="paragraph"/>A WADL document for resources managed by the plugin can be generated by sending a GET request to <code>/application.wadl</code>.
+The result should look like:<p class="paragraph"/><div class="code"><pre>&#60;application xmlns=<span class="java&#45;quote">"http://research.sun.com/wadl/2006/10"</span>&#62;
+  &#60;doc xmlns:jersey=<span class="java&#45;quote">"http://jersey.dev.java.net/"</span> jersey:generatedBy=<span class="java&#45;quote">"Jersey: 1.1.4.1 11/24/2009 01:30 AM"</span>/&#62;
+  &#60;resources base=<span class="java&#45;quote">"http://localhost:8080/"</span>&#62;
+    &#60;resource path=<span class="java&#45;quote">"/api/test"</span>&#62;
+      &#60;method name=<span class="java&#45;quote">"GET"</span> id=<span class="java&#45;quote">"getTestRepresentation"</span>&#62;
+        &#60;request&#62;
+          &#60;param xmlns:xs=<span class="java&#45;quote">"http://www.w3.org/2001/XMLSchema"</span> type=<span class="java&#45;quote">"xs:string"</span> style=<span class="java&#45;quote">"query"</span> name=<span class="java&#45;quote">"name"</span>/&#62;
+        &#60;/request&#62;
+        &#60;response&#62;
+          &#60;representation mediaType=<span class="java&#45;quote">"text/plain"</span>/&#62;
+        &#60;/response&#62;
+      &#60;/method&#62;
+    &#60;/resource&#62;
+  &#60;/resources&#62;
+&#60;/application&#62;</pre></div>
+
+
+
+<h2 id="scaffolding">9.2 Scaffolding Domains</h2>
+
+
+The <strong class="bold">jaxrs</strong> plugin also supports scaffolding. It allows you to generate a RESTful service interface for one or more
+domain classes based on JAX-RS resource classes. Supported representation formats are XML and JSON. The following
+sections walk through a simple example.<p class="paragraph"/><h3>Create a domain class</h3><p class="paragraph"/>To create a <code>Person</code> domain class go to the project's root directory and enter:<p class="paragraph"/><div class="code"><pre>grails create&#45;domain&#45;class person</pre></div><p class="paragraph"/>Open the generated <code>Person.groovy</code> file (under <code>grails-app/domain</code>) and add two properties, <code>firstName</code> and <code>lastName</code>.<p class="paragraph"/><div class="code"><pre><span class="java&#45;keyword">package</span> hello<p class="paragraph"/>class Person &#123;<p class="paragraph"/>    <span class="java&#45;keyword">static</span> constraints = &#123;
+    &#125;<p class="paragraph"/>    <span class="java&#45;object">String</span> firstName<p class="paragraph"/>    <span class="java&#45;object">String</span> lastName<p class="paragraph"/>&#125;</pre></div><p class="paragraph"/><h3>Generate the REST API</h3><p class="paragraph"/>To generate JAX-RS resources that implement the RESTful service interface for that domain class enter:<p class="paragraph"/><div class="code"><pre>grails generate&#45;resources hello.Person</pre></div><p class="paragraph"/>This will generate two resource classes, <code>PersonCollectionResource.groovy</code> and <code>PersonResource.groovy</code>
+(in the <code>hello</code> package) that support HTTP POST, GET, PUT and DELETE operations for creating, reading, updating and
+deleting <code>Person</code> objects, respectively. <code>PersonCollectionResource.groovy</code> is related to <code>Person</code> lists,
+<code>PersonResource.groovy</code> is related to individual <code>Person</code> instances. Let's take a look at how to use the generated
+RESTful service interface.<p class="paragraph"/><h3>Use the REST API</h3><p class="paragraph"/>Start the hello application with:<p class="paragraph"/><div class="code"><pre>grails run&#45;app</pre></div><p class="paragraph"/>New person objects can be created by POSTing to <code>http://localhost:8080/api/person</code>. The following request POSTs an XML
+representation of a person object.<p class="paragraph"/><div class="code"><pre>POST /api/person HTTP/1.1
+Content&#45;Type: application/xml
+Accept: application/xml
+Host: localhost:8080
+Content&#45;Length: 82<p class="paragraph"/>&#60;person&#62;
+    &#60;firstName&#62;Sam&#60;/firstName&#62;
+    &#60;lastName&#62;Hill&#60;/lastName&#62;
+&#60;/person&#62;</pre></div><p class="paragraph"/>The Content-Type header must be set either to <code>application/xml</code>. After sending the request, the server creates a new
+person object in the database and returns an XML representation of it.<p class="paragraph"/><div class="code"><pre>HTTP/1.1 201 Created
+Content&#45;Type: application/xml
+Location: http://localhost:8080/api/person/1
+Transfer&#45;Encoding: chunked
+Server: Jetty(6.1.14)<p class="paragraph"/>&#60;?xml version=<span class="java&#45;quote">"1.0"</span> encoding=<span class="java&#45;quote">"UTF&#45;8"</span>?&#62;
+&#60;person id=<span class="java&#45;quote">"1"</span>&#62;
+    &#60;firstName&#62;Sam&#60;/firstName&#62;
+    &#60;lastName&#62;Hill&#60;/lastName&#62;
+&#60;/person&#62;</pre></div><p class="paragraph"/>The client explicitly requested an XML representation via the <code>Accept</code> request header. Note that the returned
+representation differs from the submitted representation by an <code>id</code> attribute in the <code>&#60;person&#62;</code> element. This <code>id</code> is
+also contained in the <code>Location</code> response header, the URL of the created resource. The response code is <code>201 (CREATED)</code>.
+Let's create another person object using a JSON representation. Here's the request:<p class="paragraph"/><div class="code"><pre>POST /api/person HTTP/1.1
+Content&#45;Type: application/json
+Accept: application/json
+Host: localhost:8080
+Content&#45;Length: 58<p class="paragraph"/>&#123;<span class="java&#45;quote">"class"</span>:<span class="java&#45;quote">"Person"</span>,<span class="java&#45;quote">"firstName"</span>:<span class="java&#45;quote">"Fabien"</span>,<span class="java&#45;quote">"lastName"</span>:<span class="java&#45;quote">"Barel"</span>&#125;</pre></div><p class="paragraph"/>The response also contains a JSON representation of the created person (see <code>Accept</code> request header). The <code>id</code> of the
+created person object is <code>2</code>.<p class="paragraph"/><div class="code"><pre>HTTP/1.1 201 Created
+Content&#45;Type: application/json
+Location: http://localhost:8080/api/person/2
+Transfer&#45;Encoding: chunked
+Server: Jetty(6.1.14)<p class="paragraph"/>&#123;<span class="java&#45;quote">"class"</span>:<span class="java&#45;quote">"Person"</span>,<span class="java&#45;quote">"id"</span>:<span class="java&#45;quote">"2"</span>,<span class="java&#45;quote">"firstName"</span>:<span class="java&#45;quote">"Fabien"</span>,<span class="java&#45;quote">"lastName"</span>:<span class="java&#45;quote">"Barel"</span>&#125;</pre></div><p class="paragraph"/>Content negotiation via <code>Content-Type</code> and <code>Accept</code> headers works for other HTTP methods as well. To GET a list of
+created persons, open a browser (Firefox in our example) and enter the URL <code>http://localhost:8080/api/person</code>.
+This returns an XML representation of the list of persons stored in the database.<p class="paragraph"/><div class="code"><pre>&#60;list&#62;
+    &#60;person id=<span class="java&#45;quote">"1"</span>&#62;
+        &#60;firstName&#62;Sam&#60;/firstName&#62;
+        &#60;lastName&#62;Hill&#60;/lastName&#62;
+    &#60;/person&#62;
+    &#60;person id=<span class="java&#45;quote">"2"</span>&#62;
+        &#60;firstName&#62;Fabien&#62;&#60;/firstName&#62;
+        &#60;lastName&#62;Barel&#60;/lastName&#62;
+    &#60;/person&#62;
+&#60;/list&#62;</pre></div><p class="paragraph"/>An XML representation is returned because Firefox sets an <code>Accept=text/html,application/xhtml+xml,application/xml;q=0.9,<strong class="bold">/</strong>;q=0.8</code>
+request header. To get the representation of a single person, specify the <code>id</code> in the URL. For example, to get the
+person with <code>id</code> <code>1</code> use <code>http://localhost:8080/api/person/1</code><p class="paragraph"/><div class="code"><pre>&#60;person id=<span class="java&#45;quote">"1"</span>&#62;
+    &#60;firstName&#62;Sam&#60;/firstName&#62;
+    &#60;lastName&#62;Hill&#60;/lastName&#62;
+&#60;/person&#62;</pre></div><p class="paragraph"/>If you try to get a person that doesn't exist, an error message (with a status code <code>404</code>) is returned.<p class="paragraph"/><div class="code"><pre>&#60;error&#62;Person with id 3 not found&#60;/error&#62;</pre></div><p class="paragraph"/>In the next step we update the first name of person <code>1</code> by PUTting a new representation to
+<code>http://localhost:8080/api/person/1</code>.<p class="paragraph"/><div class="code"><pre>PUT /api/person/1 HTTP/1.1
+Content&#45;Type: application/xml
+Accept: application/xml
+Host: localhost:8080
+Content&#45;Length: 85<p class="paragraph"/>&#60;person&#62;
+    &#60;firstName&#62;Samuel&#60;/firstName&#62;
+    &#60;lastName&#62;Hill&#60;/lastName&#62;
+&#60;/person&#62;</pre></div><p class="paragraph"/>The response is a new representation of the updated person.<p class="paragraph"/><div class="code"><pre>HTTP/1.1 200 OK
+Content&#45;Type: application/xml
+Transfer&#45;Encoding: chunked
+Server: Jetty(6.1.14)<p class="paragraph"/>&#60;?xml version=<span class="java&#45;quote">"1.0"</span> encoding=<span class="java&#45;quote">"UTF&#45;8"</span>?&#62;
+&#60;person id=<span class="java&#45;quote">"1"</span>&#62;
+    &#60;firstName&#62;Samuel&#60;/firstName&#62;
+    &#60;lastName&#62;Hill&#60;/lastName&#62;
+&#60;/person&#62;</pre></div><p class="paragraph"/>GETting the person list again shows the update of person <code>1</code>.<p class="paragraph"/><div class="code"><pre>&#60;list&#62;
+    &#60;person id=<span class="java&#45;quote">"1"</span>&#62;
+        &#60;firstName&#62;Samuel&#60;/firstName&#62;
+        &#60;lastName&#62;Hill&#60;/lastName&#62;
+    &#60;/person&#62;
+    &#60;person id=<span class="java&#45;quote">"2"</span>&#62;
+        &#60;firstName&#62;Fabien&#62;&#60;/firstName&#62;
+        &#60;lastName&#62;Barel&#60;/lastName&#62;
+    &#60;/person&#62;
+&#60;/list&#62;</pre></div><p class="paragraph"/>Finally, we delete person <code>1</code> by sending a DELETE request to <code>http://localhost:8080/api/person/1</code>.<p class="paragraph"/><div class="code"><pre>DELETE /api/person/1 HTTP/1.1
+Accept: application/xml
+Host: localhost:8080</pre></div><p class="paragraph"/>GETting the person lists again shows that person 1 has actually been deleted.<p class="paragraph"/><div class="code"><pre>&#60;list&#62;
+    &#60;person id=<span class="java&#45;quote">"2"</span>&#62;
+        &#60;firstName&#62;Fabien&#62;&#60;/firstName&#62;
+        &#60;lastName&#62;Barel&#60;/lastName&#62;
+    &#60;/person&#62;
+&#60;/list&#62;</pre></div>
+
+
+<h2 id="gorm">9.3 Using GORM</h2>
+
+
+This section explains what's happening behind the scenes of the scaffolding example and how GORM inside JAX-RS resource
+classes.<p class="paragraph"/><h3>PersonCollectionResource.groovy</h3><p class="paragraph"/>Here's the source code for <code>PersonCollectionResource.groovy</code>.
+<div class="code"><pre><span class="java&#45;keyword">package</span> hello<p class="paragraph"/><span class="java&#45;keyword">import</span> <span class="java&#45;keyword">static</span> org.grails.jaxrs.response.Responses.&#42;<p class="paragraph"/><span class="java&#45;keyword">import</span> javax.ws.rs.Consumes
+<span class="java&#45;keyword">import</span> javax.ws.rs.GET
+<span class="java&#45;keyword">import</span> javax.ws.rs.Produces
+<span class="java&#45;keyword">import</span> javax.ws.rs.Path
+<span class="java&#45;keyword">import</span> javax.ws.rs.PathParam
+<span class="java&#45;keyword">import</span> javax.ws.rs.POST
+<span class="java&#45;keyword">import</span> javax.ws.rs.core.Response<p class="paragraph"/>@Path('/api/person')
+@Consumes(&#91;'application/xml','application/json'&#93;)
+@Produces(&#91;'application/xml','application/json'&#93;)
+class PersonCollectionResource &#123;<p class="paragraph"/>    @POST
+    Response create(Person dto) &#123;
+        created dto.save()
+    &#125;<p class="paragraph"/>    @GET
+    Response readAll() &#123;
+        ok Person.findAll()
+    &#125;<p class="paragraph"/>    @Path('/&#123;id&#125;')
+    PersonResource getResource(@PathParam('id') <span class="java&#45;object">String</span> id) &#123;
+        <span class="java&#45;keyword">new</span> PersonResource(id:id)
+    &#125;
+&#125;</pre></div>
+It is based on JSR 311 classes and annotations and uses static methods from <code>org.grails.jaxrs.response.Responses</code>. This
+is a helper class provided by the plugin that implements a very simple DSL consisting of elements created and ok.
+Supported content types for requests and responses are <code>application/xml</code> and <code>application/json</code>. This is given by the
+class-level <code>Consumes</code> and <code>Produces</code> annotations.<p class="paragraph"/>The <code>PersonCollectionResource</code> class responds to HTTP operations that are related to person lists. The URL of the person
+list is <code>http://localhost:8080/api/person</code> where the <code>/api/person</code> path is defined by the class-level
+<code>Path('/api/person')</code> annotation.
+<ul class="star">
+<li>The <code>create</code> method responds to POST requests by storing a new <code>Person</code> object in the database using GORM. The XML or&#10;  JSON request entity is converted by the plugin to a <code>Person</code> domain object and passed to the method via a dto&#10;  parameter. The conversion is done by a domain object provider. The persisted domain object is passed to the created&#10;  method which creates a response from it using the JAX-RS API (see source code for details). The created method&#10;  constructs a URI for the <code>Location</code> response header from the domain object <code>id</code>. The <code>Person</code> object is set to the&#10;  Response entity.</li>
+<li>The <code>readAll</code> method responds to GET requests and returns a person list. Again we use GORM to get all person objects&#10;  from the database and pass that list as argument to the <code>ok</code> method. This method uses the JAX-RS API to create a&#10;  response (see link source code for details).</li>
+<li>The <code>getResource</code> method creates another JAX-RS resource whenever a request to the URI template&#10;  <code>http://localhost:8080/api/person/{id}</code> is made. The <code>id</code> path parameter in the template is bound to the id parameter&#10;  of the <code>getResource</code> method. The created JAX-RS <code>PersonResource</code> is then used by the JAX-RS runtime to handle the&#10;  request to the person with the given id.</li>
+</ul><p class="paragraph"/><h3>PersonResource.groovy</h3><p class="paragraph"/>Here's the source code for <code>PersonResource.groovy</code>.<p class="paragraph"/><div class="code"><pre><span class="java&#45;keyword">package</span> hello<p class="paragraph"/><span class="java&#45;keyword">import</span> <span class="java&#45;keyword">static</span> org.grails.jaxrs.response.Responses.&#42;<p class="paragraph"/><span class="java&#45;keyword">import</span> javax.ws.rs.Consumes
+<span class="java&#45;keyword">import</span> javax.ws.rs.DELETE
+<span class="java&#45;keyword">import</span> javax.ws.rs.GET
+<span class="java&#45;keyword">import</span> javax.ws.rs.Produces
+<span class="java&#45;keyword">import</span> javax.ws.rs.PUT
+<span class="java&#45;keyword">import</span> javax.ws.rs.core.Response<p class="paragraph"/><span class="java&#45;keyword">import</span> org.grails.jaxrs.provider.DomainObjectNotFoundException<p class="paragraph"/>@Consumes(&#91;'application/xml','application/json'&#93;)
+@Produces(&#91;'application/xml','application/json'&#93;)
+class PersonResource &#123;<p class="paragraph"/>    def id<p class="paragraph"/>    @GET
+    Response read() &#123;
+        def obj = Person.get(id)
+        <span class="java&#45;keyword">if</span> (!obj) &#123;
+            <span class="java&#45;keyword">throw</span> <span class="java&#45;keyword">new</span> DomainObjectNotFoundException(Person.class, id)
+        &#125;
+        ok obj
+    &#125;<p class="paragraph"/>    @PUT
+    Response update(Person dto) &#123;
+        def obj = Person.get(id)
+        <span class="java&#45;keyword">if</span> (!obj) &#123;
+            <span class="java&#45;keyword">throw</span> <span class="java&#45;keyword">new</span> DomainObjectNotFoundException(Person.class, id)
+        &#125;
+        obj.properties = dto.properties
+        ok obj
+    &#125;<p class="paragraph"/>    @DELETE
+    void delete() &#123;
+        def obj = Person.get(id)
+        <span class="java&#45;keyword">if</span> (obj) &#123;
+            obj.delete()
+        &#125;
+    &#125;
+&#125;</pre></div><p class="paragraph"/>The <code>id</code> property is set during construction of the resource and is used for database operations. This class implements
+the methods <code>read</code>, <code>update</code> and <code>delete</code> to handle GET, PUT and DELETE requests, respectively. It also uses GORM for
+database operations and relies on helper methods of <code>org.grails.jaxrs.response.Responses</code> to create responses via the
+JAX-RS API.<p class="paragraph"/>If there's no person with given <code>id</code> in the database, a <code>DomainObjectNotFoundException</code> is thrown. This exception class
+generates a custom 404 response using the JAX-RS API (see source code for details).
+
+
+<h2 id="filters">9.4 Applying Filters</h2>
+
+
+Grails filters can be applied to JAX-RS resources as well. For example, to add a filter for the <code>/api/test/<strong class="bold"></strong></code> URL
+pattern, create a file <code>TestFilters.groovy</code> under <code>grails-app/conf</code> that looks like:<p class="paragraph"/><blockquote class="warning">
+Filters have been deprecated in Grails 3. This documentation will be updated with details about using interceptors.
+</blockquote><p class="paragraph"/><div class="code"><pre>class TestFilters &#123;<p class="paragraph"/>    def filters = &#123;<p class="paragraph"/>        testUris(uri:'/api/test/&#42;&#42;') &#123;
+            before = &#123;
+                // <span class="java&#45;keyword">do</span> some preprocessing
+            &#125;
+            after = &#123;
+                // <span class="java&#45;keyword">do</span> some postprocessing
+            &#125;<p class="paragraph"/>        &#125;
+    &#125;
+&#125;</pre></div>
+
+
+
+<h2 id="injection">9.5 Service Injection</h2>
+
+
+Services can be auto-injected into resource and provider objects by name. Assue we have a service class named
+<code>TestService.groovy</code> in <code>grails-app/services</code> that looks like:<p class="paragraph"/><div class="code"><pre><span class="java&#45;keyword">package</span> hello<p class="paragraph"/>class TestService &#123;<p class="paragraph"/>     <span class="java&#45;object">String</span> greet(<span class="java&#45;object">String</span> name) &#123;
+         'Hello ' + (name ? name : 'unknown')
+     &#125;
+&#125;</pre></div><p class="paragraph"/>We can then auto-inject the service by defining a <code>testService</code> property like in the following resource class.<p class="paragraph"/><div class="code"><pre><span class="java&#45;keyword">package</span> hello<p class="paragraph"/>@Path('/api/test')
+class TestResource &#123;<p class="paragraph"/>    def testService // injected<p class="paragraph"/>    @GET
+    @Produces('text/plain')
+    <span class="java&#45;object">String</span> getTestRepresentation(@QueryParam('name') <span class="java&#45;object">String</span> name) &#123;
+        testService.greet(name)
+    &#125;
+&#125;</pre></div>
+
+
+
+<h2 id="google">9.6 Google App Engine</h2>
+
+
+This section describes how to get the hello world example running on Google App Engine.<p class="paragraph"/><blockquote class="note">
+This section has been untested with Grails 3. If this documentation is out of date, please submit an issue or
+contribute updated documentation in a pull request.
+</blockquote>
+<ul class="star">
+<li>Install the Grails app-engine plugin.</li>
+<li>Create a Grails application and JAX-RS resource as described in the hello world example.</li>
+<li>Be sure to use the <strong class="bold">jaxrs-restlet</strong> implementation plugin.</li>
+<li>Add the following entries to the Grails configuration:</li>
+</ul><p class="paragraph"/><div class="code"><pre>// replace &#60;application&#45;name&#62; with the
+// actual App Engine application name
+google.appengine.application='&#60;application&#45;name&#62;'</pre></div>
+<ul class="star">
+<li>Open a shell at the root directory of the hello world application.</li>
+<li>Set the application version to 1 with:</li>
+</ul><p class="paragraph"/><div class="code"><pre>grails set&#45;version 1</pre></div>
+<ul class="star">
+<li>Run the application locally with <code>grails app-engine run</code>.</li>
+<li>Enter the URL <code>http://localhost:8080/test?name=Tester</code> into your browser and the browser window should display&#10;   <em class="italic">Hello Tester</em> .</li>
+<li>Package the plugin with <code>grails app-engine package</code>.</li>
+<li>Deploy the application with the <code>appcfg</code> command-line tool from your App Engine SDK.</li>
+<ul class="star">
+<li>On Linux, enter:</li>
+</ul></ul><p class="paragraph"/><div class="code"><pre>$APPENGINE_HOME/bin/appcfg.sh update ./target/war</pre></div>
+<ul class="star">
+<ul class="star">
+<li>On Windows, enter:</li>
+</ul></ul><p class="paragraph"/><div class="code"><pre>%APPENGINE_HOME%&#98;in&#97;ppcfg.cmd update .&#116;arget&#119;ar</pre></div>
+<ul class="star">
+<li>When prompted enter email and password to authenticate at Google App Engine.</li>
+<li>Once deployment is done go enter the URL <code>http://&#60;application-name&#62;.appspot.com/test?name=Tester</code> into your browser&#10;  and the browser window should display  <em class="italic">Hello Tester</em> . It may take 10-20 seconds for Google App Engine to initialize&#10;  the Grails application the first time. Subsequent requests are served much faster.</li>
+</ul><p class="paragraph"/><blockquote class="note">
+Using scaffolding together with the gorm-jpa plugin is not supported at the moment. A related feature request has
+already been added to the issue tracker.
+</blockquote>
+
+
+                <div style="clear:both;margin-top:15px;"></div>
+                
+                    <div class="toc-item prev-left"><a href="../guide/testing.html">&lt;&lt; <strong>8</strong><span>Integration Testing</span></a></div>
+                
+                    <div class="toc-item next-right"><a href="../guide/acknowledgements.html"><strong>10</strong><span>Acknowledgements</span> >></a></div>
+                
+                <div style="clear:both"></div>
+            </div>
+        </td>
+        <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div id="footer">
+    
+    
+</div>
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+</body>
+</html>
