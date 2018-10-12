@@ -42,7 +42,9 @@ class JaxrsListener implements ServletContextListener, ApplicationContextAware {
 
         JaxrsContext context = jaxrsContext
         context.setServletContext(event.getServletContext())
-        context.restart()
+        if (context.isConfigured()) {
+            context.restart()
+        }
     }
 
     protected JaxrsContext getJaxrsContext() {
