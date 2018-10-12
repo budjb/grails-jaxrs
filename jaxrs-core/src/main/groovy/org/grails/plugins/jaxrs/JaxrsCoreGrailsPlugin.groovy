@@ -156,7 +156,8 @@ mechanism for implementing  RESTful web services.
         jaxrsUtil.configureMappings()
 
         JaxrsContext jaxrsContext = applicationContext.getBean('jaxrsContext', JaxrsContext)
-        if (jaxrsContext.isInit()) {
+        jaxrsContext.setConfigured(true)
+        if (jaxrsContext.getServletContext() != null) {
             jaxrsContext.restart()
         }
     }

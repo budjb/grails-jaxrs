@@ -47,6 +47,11 @@ class JaxrsContext implements InitializingBean {
     Logger log = LoggerFactory.getLogger(JaxrsContext)
 
     /**
+     * Whether the configuration was done.
+     */
+    volatile boolean configured
+
+    /**
      * Instance of the servlet handling JAX-RS requests.
      */
     volatile Servlet jaxrsServlet
